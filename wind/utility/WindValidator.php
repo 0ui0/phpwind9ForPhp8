@@ -124,7 +124,7 @@ class WindValidator {
 	 * @return boolean 如果是合法的url则返回true，否则返回false
 	 */
 	public static function isUrl($string) {
-		return 0 < preg_match('/^(?:http(?:s)?:\/\/(?:[\w-]+\.)+[\w-]+(?:\:\d+)*+(?:\/[\w- .\/?%&=]*)?)$/', $string);
+		return 0 < preg_match('/^(?:http(?:s)?:\/\/(?:[\w-]+\.)+[\w-]+(?:\:\d+)*+(?:\/[\w .\/?%&=-]*)?)$/', $string);
 	}
 
 	/**

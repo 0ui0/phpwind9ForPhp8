@@ -81,7 +81,15 @@ class PwTemplateCompilerDesign extends AbstractWindTemplateCompiler {
     	$c = $router->getController(); 
     	$a = $router->getAction();
     	$this->_router = $m.'/'.$c.'/'.$a;
-    	$this->_uri = urlencode($router->request->getHostInfo() .$router->request->getRequestUri());
+    	
+    	$hostInfo = $router->request->getHostInfo();
+    	$requestUri = $router->request->getRequestUri();
+    	
+    	if (preg_match('/^https?:\/\//i', $requestUri)) {
+    		$this->_uri = urlencode($requestUri);
+    	} else {
+    		$this->_uri = urlencode($hostInfo . $requestUri);
+    	}
 	}
 	
 	private function _pageName() {

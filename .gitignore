@@ -2,6 +2,7 @@
 node_modules/
 /data/*
 /attachment/*
+/conf/database.php
 *.zip
 *.rar
 *.7z

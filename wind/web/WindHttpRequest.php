@@ -601,9 +601,11 @@ class WindHttpRequest implements IWindRequest {
 	private function _initRequestUri() {
 		if (($requestUri = $this->getServer('HTTP_X_REWRITE_URL')) != null) {
 			$this->_requestUri = $requestUri;
+		} elseif (($requestUri = $this->getServer('HTTP_X_ORIGINAL_URL')) != null) {
+			$this->_requestUri = $requestUri;
 		} elseif (($requestUri = $this->getServer('REQUEST_URI')) != null) {
 			$this->_requestUri = $requestUri;
-			if (strpos($this->_requestUri, $this->getServer('HTTP_HOST')) !== false) $this->_requestUri = preg_replace(
+			if (stripos($this->_requestUri, $this->getServer('HTTP_HOST')) !== false) $this->_requestUri = preg_replace(
 				'/^\w+:\/\/[^\/]+/', '', $this->_requestUri);
 		} elseif (($requestUri = $this->getServer('ORIG_PATH_INFO')) != null) {
 			$this->_requestUri = $requestUri;

@@ -86,10 +86,15 @@ abstract class bootstrap {
 	public function getUrl() {
 		$_consts = Wekit::S('publish');
 		$realPublicUrl = defined('PUBLIC_URL') ? PUBLIC_URL : '';
+		
+		// Debug logging
+		// file_put_contents('/Users/lambda/.gemini/tmp/90432c94314757c2a715f5c4004c86e7498305c120092289658fcf9a2d21/url_debug.log', "PUBLIC_URL: " . $realPublicUrl . "\n", FILE_APPEND);
+		
 		foreach ($_consts as $const => $value) {
 			if ($const === 'PUBLIC_URL') {
 				if (!$value && !$realPublicUrl) {
-					$value = Wind::getComponent('request')->getBaseUrl(true);
+					$request = Wind::getComponent('request');
+					$value = $request ? $request->getBaseUrl(true) : '';
 					if (defined('BOOT_PATH') && 0 === strpos(BOOT_PATH, PUBLIC_PATH)) {
 						$path = substr(BOOT_PATH, strlen(PUBLIC_PATH));
 						!empty($path) && $value = substr($value, 0, -strlen($path));

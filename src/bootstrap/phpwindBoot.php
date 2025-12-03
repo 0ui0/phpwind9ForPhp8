@@ -33,7 +33,8 @@ class phpwindBoot extends bootstrap {
 					'proxy' => 'WIND:filter.proxy.WindEnhancedClassProxy', 
 					'listeners' => array('LIB:compile.acloud.PwAcloudDbListener'))));
 		
-		$this->charset = Wind::getComponent('response')->getCharset();
+		$response = Wind::getComponent('response');
+		$this->charset = $response ? $response->getCharset() : 'UTF-8';
 	}
 
 	public function getConfigService() {
