@@ -43,7 +43,7 @@ class PwDesignPortalDao extends PwBaseDao {
 		list($where,$array) = $this->_buildCondition($data);
 		$sql = $this->_bindSql('SELECT  count(*) FROM %s %s ', $this->getTable(), $where);
 		$smt = $this->getConnection()->createStatement($sql);
-		return $smt->getValue(array($array));
+		return $smt->getValue($array);
 	}
 	
 	public function add($data) {
