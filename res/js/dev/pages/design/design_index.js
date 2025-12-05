@@ -1988,7 +1988,6 @@
 	//保存方法
 	function save(elem, savedata){
 		Wind.Util.ajaxMaskShow(design_zindex);
-		alert(elem.data('action'))
 		try{
 			$.ajax({
 				url : elem.data('action'),
