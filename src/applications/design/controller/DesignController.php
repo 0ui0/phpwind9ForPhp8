@@ -5,11 +5,11 @@ Wind::import('LIB:base.PwBaseController');
  * @author $Author: gao.wanggao $ Foxsee@aliyun.com
  * @copyright ©2003-2103 phpwind.com
  * @license http://www.phpwind.com
- * @version $Id: DesignController.php 29033 2013-06-05 02:56:40Z gao.wanggao $ 
- * @package 
+ * @version $Id: DesignController.php 29033 2013-06-05 02:56:40Z gao.wanggao $
+ * @package
  */
 class DesignController extends PwBaseController {
-	
+
 	public  function beforeAction($handlerAdapter) {
 		parent::beforeAction($handlerAdapter);
 	}
@@ -30,7 +30,7 @@ class DesignController extends PwBaseController {
     	WindFolder::rm(Wind::getRealDir('DATA:compile.template.'.$theme.'.design.segment.'), true);
     	$this->setTemplate('TPL:design.segment.module');
 	}
-	
+
 	public function getmodulepermissionsAction() {
 		$other = array('html', 'searchbar', 'image');
 		$tab = array();
@@ -66,7 +66,7 @@ class DesignController extends PwBaseController {
 			default:
 				$this->showError("DESIGN:permissions.fail");
 		}
-		
+
 		//对config里的tab进行过滤
 		Wind::import('SRV:design.bo.PwDesignModelBo');
 		$bo = new PwDesignModelBo($module['model_flag']);
@@ -80,7 +80,7 @@ class DesignController extends PwBaseController {
 		$this->setOutput($tab, 'data');
 		$this->showMessage("operate.success");
 	}
-	
+
 	public function dosavepageAction() {
 		$_tmp1 = $_tmp2 = $isunique = false;
 		$pageid = (int)$this->getInput('pageid', 'post');
@@ -93,7 +93,7 @@ class DesignController extends PwBaseController {
 		Wind::import('SRV:design.bo.PwDesignPageBo');
 		$pageBo = new PwDesignPageBo($pageid);
 		if ($pageBo->getLock()) $this->showError('DESIGN:page.edit.other.user');
-		
+
 		//兼容其它类型模块
 		if ($permissions >= PwDesignPermissions::IS_PUSH ){
 			$service = $this->_getPageSaveService();
@@ -116,10 +116,11 @@ class DesignController extends PwBaseController {
 		$this->_getDesignService()->clearCompile();
 		$this->_getBakService()->doBak($pageid);
 		//$this->setOutput(urldecode($uri), 'data');
+
 		$this->showMessage("operate.success", urldecode($uri));
 	}
 
-	
+
 	/**
 	 * 恢复上一次数据
 	 * Enter description here ...
@@ -137,7 +138,7 @@ class DesignController extends PwBaseController {
 		$this->showMessage("operate.success");
 
 	}
-	
+
 	/**
 	 * 更新当前页数据
 	 * Enter description here ...
@@ -162,7 +163,7 @@ class DesignController extends PwBaseController {
 		$this->_getDesignService()->clearCompile();
 		$this->showMessage("operate.success");
 	}
-	
+
 	/**
 	 * 清空当前页设计数据
 	 * Enter description here ...
@@ -179,8 +180,8 @@ class DesignController extends PwBaseController {
 		Wind::import('SRV:design.bo.PwDesignPageBo');
 		$pageBo = new PwDesignPageBo($pageid);
 		if ($pageBo->getLock()) $this->showError('DESIGN:page.edit.other.user');
-		
-		
+
+
 		$ids = explode(',', $pageInfo['module_ids']);
 		$names = explode(',', $pageInfo['module_names']);
 		$moduleDs = $this->_getModuleDs();
@@ -196,28 +197,28 @@ class DesignController extends PwBaseController {
 			$pushDs->deleteByModuleId($id);
 			$imageSrv->clearFolder($id);
 		}
-		
+
 		//structure
 		$ds = $this->_getStructureDs();
 		foreach ($names AS $name) {
 			$ds->deleteStruct($name);
 		}
-		
+
 		//segment
 		$this->_getSegmentDs()->deleteSegmentByPageid($pageid);
-		
+
 		//bak
 		$bakDs->deleteByPageId($pageid);
 
 		$tplPath = $pageBo->getTplPath();
 		$this->_getDesignService()->clearTemplate($pageid, $tplPath);
 		if ($pageInfo['page_type'] == PwDesignPage::PORTAL) {
-			
+
 			Wind::import('SRV:design.dm.PwDesignPortalDm');
 			$dm = new PwDesignPortalDm($pageInfo['page_unique']);
 			$dm->setTemplate($tplPath);
 			$this->_getPortalDs()->updatePortal($dm);
-			
+
 			$srv = Wekit::load('design.srv.PwDesignService');
 			$result = $srv->defaultTemplate($pageid, $tplPath);
 		} else {
@@ -226,7 +227,7 @@ class DesignController extends PwBaseController {
 		$this->_getDesignService()->clearCompile();
 		$this->showMessage("operate.success");
 	}
-	
+
 	/**
 	 * 被占用退出
 	 * Enter description here ...
@@ -236,7 +237,7 @@ class DesignController extends PwBaseController {
 		$this->setOutput(urldecode($uri), 'data');
 		$this->showMessage("operate.success");
 	}
-	
+
 	public function doexitAction() {
 		$pageid = (int)$this->getInput('pageid', 'post');
 		$uri = $this->getInput('uri', 'post');
@@ -248,7 +249,7 @@ class DesignController extends PwBaseController {
 		Wind::import('SRV:design.bo.PwDesignPageBo');
 		$pageBo = new PwDesignPageBo($pageid);
 		if ($pageBo->getLock()) $this->showError('DESIGN:page.edit.other.user');
-		
+
 		$srv =$this->_getRestoreService();
 		$srv->doRestoreSnap($pageid);
 		//编辑模式解锁
@@ -258,9 +259,10 @@ class DesignController extends PwBaseController {
 		$this->_getPageDs()->updatePage($dm);
 		$this->_getDesignService()->clearCompile();
 		//$this->setOutput(urldecode($uri), 'data');
+
 		$this->showMessage("operate.success", urldecode($uri));
 	}
-	
+
 	/**
 	 * 设计模计轮循加锁
 	 * Enter description here ...
@@ -284,15 +286,15 @@ class DesignController extends PwBaseController {
 	private function _getDesignService() {
 		return Wekit::load('design.srv.PwDesignService');
 	}
-	
+
 	private function _getRestoreService() {
 		return Wekit::load('design.srv.PwRestoreService');
 	}
-	
+
 	private function _getBakService() {
 		return Wekit::load('design.srv.PwPageBakService');
 	}
-	
+
 	private function _getPageSaveService() {
 		return Wekit::load('design.srv.PwDesignPageSave');
 	}
@@ -300,38 +302,38 @@ class DesignController extends PwBaseController {
 	private function _getPermissionsService() {
 		return Wekit::load('design.srv.PwDesignPermissionsService');
 	}
-	
+
 	private function _getStructureDs() {
 		return Wekit::load('design.PwDesignStructure');
 	}
-	
+
 	private function _getModuleDs() {
 		return Wekit::load('design.PwDesignModule');
 	}
-	
+
 	private function _getPageDs() {
 		return Wekit::load('design.PwDesignPage');
 	}
-	
+
 	private function _getBakDs() {
 		return Wekit::load('design.PwDesignBak');
 	}
-	
+
 	private function _getSegmentDs() {
 		return Wekit::load('design.PwDesignSegment');
 	}
-	
+
 	private function _getDataDs() {
 		return Wekit::load('design.PwDesignData');
 	}
-	
+
 	private function _getPushDs() {
 		return Wekit::load('design.PwDesignPush');
 	}
-	
+
 	private function _getPortalDs() {
 		return Wekit::load('design.PwDesignPortal');
 	}
-	
+
 }
 ?>

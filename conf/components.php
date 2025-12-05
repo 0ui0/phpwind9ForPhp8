@@ -2,7 +2,7 @@
 defined('WEKIT_VERSION') or exit(403);
 /**
  * 组件配置文件
- * 
+ *
  * @author Qiong Wu <papa0924@gmail.com> 2010-11-2
  * @link http://www.phpwind.com
  * @copyright Copyright &copy; 2003-2010 phpwind.com
@@ -10,7 +10,7 @@ defined('WEKIT_VERSION') or exit(403);
  */
 return array(
 	'error' => array(
-		'path' => 'LIB:base.PwErrorHandler',	
+		'path' => 'LIB:base.PwErrorHandler',
 	),
 	'pwWidget' => array(
 		'path' => 'LIB:engine.component.PwWidget',
@@ -19,7 +19,7 @@ return array(
 	'pwComponent' => array(
 		'path' => 'LIB:engine.component.PwComponent',
 		'scope' => 'singleton',
-		'config' => array('resource' => 'CONF:pwcomponents.php'),		
+		'config' => array('resource' => 'CONF:pwcomponents.php'),
 	),
 	'security' => array(
 		//'path' => 'WIND:security.WindXxtea',
@@ -27,7 +27,7 @@ return array(
 		'scope' => 'singleton',
 	),
 	'windLogger' => array(
-		'constructor-args' => array('0' => array('value' => 'DATA:log'), '1' => array('value' => '2'), '2' => array('value' => 10000))
+		'constructor-args' => array('0' => array('value' => 'DATA:log'), '1' => array('value' => '0'), '2' => array('value' => 10000))
 	),
 	'router' => array(
 		'config' => array(

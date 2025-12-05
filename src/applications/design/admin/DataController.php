@@ -5,15 +5,15 @@ Wind::import('APPS:design.admin.DesignBaseController');
  * @author $Author: gao.wanggao $ Foxsee@aliyun.com
  * @copyright ©2003-2103 phpwind.com
  * @license http://www.phpwind.com
- * @version $Id: DataController.php 28818 2013-05-24 10:10:46Z gao.wanggao $ 
- * @package 
+ * @version $Id: DataController.php 28818 2013-05-24 10:10:46Z gao.wanggao $
+ * @package
  */
-class DataController extends DesignBaseController {	
-	
+class DataController extends DesignBaseController {
+
 	public function run() {
 		$this->setOutput($this->bo->getData(), 'list');
 	}
-	
+
 	public function editAction() {
 		$dataid = (int)$this->getInput('dataid', 'get');
 		$data = $this->_getDataDs()->getData($dataid);
@@ -39,7 +39,7 @@ class DataController extends DesignBaseController {
 		$this->setOutput($oneSign, 'oneSign');
 		$this->setOutput($allSign, 'allSign');
 	}
-	
+
 	public function doeditAction() {
 		$dataid = (int)$this->getInput('dataid', 'post');
 		$info = $this->_getDataDs()->getData($dataid);
@@ -62,7 +62,7 @@ class DataController extends DesignBaseController {
 				$data[$k] = $v;
 			}
 		}
-		
+
 		$time = Pw::getTime();
 		$startTime = $start ? Pw::str2time($start) : $time;
 		$endTime = $end ? Pw::str2time($end) : $end;
@@ -74,7 +74,7 @@ class DataController extends DesignBaseController {
  			->setStarttime($startTime)
  			->setEndtime($endTime);
 		//推送的数据，不打修改标识
- 		if ($info['from_type'] == PwDesignData::FROM_AUTO){	
+ 		if ($info['from_type'] == PwDesignData::FROM_AUTO){
  			$dm->setEdited(1);
 		}
  		if($startTime > $time) $dm->setReservation(1);
@@ -91,19 +91,19 @@ class DataController extends DesignBaseController {
 		}
 		$this->showMessage("operate.success", 'design/data/run?moduleid='.$this->bo->moduleid, true);
 	}
-	
+
 	public function doshieldAction() {
 		$dataid = (int)$this->getInput('dataid', 'get');
 		$ds = $this->_getDataDs();
 		$data = $ds->getData($dataid);
 		if (!$data) $this->showError("operate.fail");
 		switch ($data['from_type']) {
-			case PwDesignData::FROM_PUSH:  
+			case PwDesignData::FROM_PUSH:
 				$resource = $ds->deleteData($dataid);
 				$this->_getPushDs()->deletePush($data['from_id']);
 				//$this->_getPushDs()->updateStatus($data['from_id'], PwDesignPush::ISSHIELD);
 				break;
-			case PwDesignData::FROM_AUTO:  
+			case PwDesignData::FROM_AUTO:
 				$resource = $ds->deleteData($dataid);
 				$this->_getShieldDs()->addShield($data['from_app'], $data['from_id'], $data['module_id'], $data['title'], $data['url']);
 				break;
@@ -111,17 +111,17 @@ class DataController extends DesignBaseController {
 				$this->showError("operate.fail");
 				break;
 		}
-		
+
 		$extend = unserialize($data['extend_info']);
 		$delImages = $extend['standard_image'];
 		Wekit::load('design.srv.PwDesignImage')->clearFiles($this->bo->moduleid, explode('|||', $delImages));
-		
+
 		Wind::import('SRV:design.srv.data.PwShieldData');
 		$srv = new PwShieldData($data['module_id']);
 		$srv->addShieldData();
 		$this->showMessage("operate.success");
 	}
-	
+
 	public function pushAction() {
 		$page = (int)$this->getInput('page','get');
 		$perpage = 10;
@@ -153,8 +153,8 @@ class DataController extends DesignBaseController {
 		$this->setOutput($perpage, 'perpage');
 		$this->setOutput(ceil($count/$perpage), 'totalpage');
 	}
-	
-	
+
+
 	public function dopushAction() {
 		$pushid = (int)$this->getInput('pushid','post');
 		$pushDs = $this->_getPushDs();
@@ -164,7 +164,7 @@ class DataController extends DesignBaseController {
 		$srv->addAutoData();
 		$this->showMessage("operate.success");
 	}
-	
+
 	public function delpushAction() {
 		$pushid = (int)$this->getInput('pushid','post');
 		$push = $this->_getPushDs()->getPush($pushid);
@@ -177,7 +177,7 @@ class DataController extends DesignBaseController {
 		}
 		$this->showError("operate.fail");
 	}
-	
+
 	public function batchEditDataAction() {
 		$dataid = $this->getInput('dataid','post');
 		$order_tmp = $vieworder = $this->getInput('vieworder','post');
@@ -187,7 +187,7 @@ class DataController extends DesignBaseController {
 		Wind::import('SRV:design.dm.PwDesignDataDm');
 		Wind::import('SRV:design.dm.PwDesignPushDm');
 		$ds = $this->_getDataDs();
-		
+
 		//转换排序数字
 		asort($vieworder);
 		$i = 1;
@@ -195,7 +195,7 @@ class DataController extends DesignBaseController {
 			$order = $i;
 			$i++;
 		}
-		
+
 		foreach ($dataid AS $id) {
 			$data = $ds->getData($id);
 			if ($data['is_reservation']) continue;
@@ -226,7 +226,7 @@ class DataController extends DesignBaseController {
 			}
 			$ds->updateData($dm);
 		}
-		
+
 		//预订
 		foreach ($dataid AS $id) {
 			$data = $ds->getData($id);
@@ -255,7 +255,7 @@ class DataController extends DesignBaseController {
 		}
  		$this->showMessage("operate.success");
 	}
-	
+
 	public function batchCheckPushAction() {
 		$pushid = $this->getInput('pushid','post');
 		if (!$pushid) $this->showError("operate.fail");
@@ -268,14 +268,14 @@ class DataController extends DesignBaseController {
 		$srv->addAutoData();
 		$this->showMessage("operate.success");
 	}
-	
+
 	public function batchDelPushAction() {
 		$pushid = $this->getInput('pushid','post');
 		if ($this->_getPushDs()->batchDelete($pushid)) $this->showMessage("operate.success");
 		$this->showError("operate.fail");
 	}
-	
-	
+
+
 	private function _uploadFile($key, $moduleid = 0) {
  		Wind::import('SRV:upload.action.PwDesignDataUpload');
 		Wind::import('LIB:upload.PwUpload');
@@ -286,7 +286,7 @@ class DataController extends DesignBaseController {
 		$image = $bhv->getAttachInfo();
 		return $image['filename'] ? Pw::getPath($image['path'] . $image['filename']) : '';
  	}
-	
+
 	/**
 	 * 从全部可用模块标签中转换key=>value标签
 	 * Enter description here ...
@@ -310,7 +310,7 @@ class DataController extends DesignBaseController {
 		}
 		return $_key;
 	}
-	
+
 	/**
 	 * 从模块模板中转换key标签
 	 * Enter description here ...
@@ -330,13 +330,13 @@ class DataController extends DesignBaseController {
 				$two[] = $v;
     		}
 		}
-		
+
 		if(preg_match_all('/\{(\w+)\|(\d+)}/U', $tpl, $matche)) {
 			foreach ($matche[1] AS $v) {
 				$one[] =$v;
     		}
 		}
-		
+
 		if(preg_match_all('/\{(\w+)}/isU', $tpl, $matche)) {
 			foreach ($matche[1] AS $v) {
 				$one[] = $v;
@@ -345,24 +345,24 @@ class DataController extends DesignBaseController {
 		return array(array_unique($three), array_unique($two), array_unique($one));
 	}
 
-	
+
 	private function _getPushService() {
 		return Wekit::load('design.srv.PwPushService');
 	}
-	
-	
+
+
 	private function _getDesignService() {
 		return Wekit::load('design.srv.PwDesignService');
 	}
-	
+
 	private function _getPushDs() {
 		return Wekit::load('design.PwDesignPush');
 	}
-	
+
 	private function _getDataDs() {
 		return Wekit::load('design.PwDesignData');
 	}
-	
+
 	private function _getShieldDs() {
 		return Wekit::load('design.PwDesignShield');
 	}

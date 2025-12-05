@@ -10,29 +10,29 @@
  */
 class PwTemplateCompilerUrlCreater extends AbstractWindTemplateCompiler {
 	private $_variables = array();
-	
+
 	/*
 	 * (non-PHPdoc) @see AbstractWindTemplateCompiler::compile()
 	 */
 	public function compile($key, $content) {
 		$content = substr($content, 6, -1);
 		list($content, $route) = explode('|', $content . '|');
-		
+
 		$this->_variables = array();
 		$content = preg_replace_callback(
-			'/((\$[a-zA-Z_]+->)|([a-zA-Z_]+::)|\$)([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_\x7f-\xff\'\"\$\[\]]+\])*)/i', 
+			'/((\$[a-zA-Z_]+->)|([a-zA-Z_]+::)|\$)([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(\[[a-zA-Z0-9_\x7f-\xff\'\"\$\[\]]+\])*)/i',
 			array($this, '_variable'), trim($content));
-		
+
 		$content = WindUrlHelper::createUrl($content, array(), '', $route, false);
 		$content = $this->_compile(ltrim($content, '/'));
-		
+
 		//变量过滤，添加rawurlencode 安全过滤，如果是链接好的串需要使用者控制
 		foreach ($this->_variables as $key => $var) {
 			$content = str_replace($key, '\', rawurlencode(' . $var . '),\'', $content);
 		}
 
 		$content = str_replace(",''", '', '\'' . $content . '\'');
-		
+
 		/* foreach ((array) Wekit::getGlobal('_url_') as $key => $value) {
 			$this->_variables[$key] = $value;
 			$content .= ',\'&' . $key . '=\',Wekit::getGlobal(\'_url_\', ' . $key . ')';
@@ -51,7 +51,7 @@ class PwTemplateCompilerUrlCreater extends AbstractWindTemplateCompiler {
 		$this->_variables[$key] = $matches[0];
 		return $key;
 	}
-	
+
 	/**
 	 * 分析其中的脚本
 	 *
@@ -82,10 +82,10 @@ class PwTemplateCompilerUrlCreater extends AbstractWindTemplateCompiler {
 				$content = ltrim(str_replace($route->dynamicHost, '', $content), '/');
 			}
 			$route->dynamicDomain = $route->dynamic = $route->dynamicDomain = null;
-		} 
+		}
 		return $content;
 	}
-	
+
 	/**
 	 * 编译其中的php语句
 	 *
@@ -99,10 +99,16 @@ class PwTemplateCompilerUrlCreater extends AbstractWindTemplateCompiler {
 		}
 		return $str;
 	}
-	
+
 	private function _checkUrl($content) {
 		if (strpos($content, '://') === false) {
-			$content = 'Wind::getComponent(\'response\')->getData(\'G\', \'url\', \'base\'),\'/\',' . $content;
+			// 添加URL安全检查，确保不会将主机名错误地作为控制器路径
+			$baseUrl = 'Wind::getComponent(\'response\')->getData(\'G\', \'url\', \'base\')';
+			$content = $baseUrl . ',\'/\',' . $content;
+
+			// 添加调试日志，便于排查URL编译问题
+			// Wind::import('WIND:log.WindLog');
+			// WindLog::log('URL编译结果: ' . $content, WindLog::DEBUG);
 		}
 		return $content;
 	}

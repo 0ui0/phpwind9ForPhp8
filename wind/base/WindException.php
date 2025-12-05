@@ -1,7 +1,7 @@
 <?php
 /**
  * 通用异常类型,大部分异常都是继承自该异常
- * 
+ *
  * @author Qiong Wu <papa0924@gmail.com> 2011-10-8
  * @copyright ©2003-2103 phpwind.com
  * @license http://www.windframework.com
@@ -25,7 +25,7 @@ class WindException extends Exception {
 
 	/**
 	 * 异常构造函数
-	 * 
+	 *
 	 * @param $message		     异常信息
 	 * @param $code			     异常代号 默认为0
 	 * @param $innerException 内部异常 默认为null
@@ -37,32 +37,32 @@ class WindException extends Exception {
 
 	/**
 	 * 根据exception code返回构建的异常信息描述
-	 * 
+	 *
 	 * @param string $message 用户自定义的信息
 	 * @param int $code  异常号
 	 * @return string 组装后的异常信息
 	 */
 	public function buildMessage($message, $code) {
+		// 确保$message是字符串类型，避免str_replace参数类型错误
+		$message = (string)$message;
 		$message = str_replace(array("<br />", "<br>", "\r\n"), '', $message);
 		$_message = $this->messageMapper($code);
 		return $_message ? str_replace('$message', $message, $_message) : $message;
 	}
 
 	/**
-	 * 自定义异常号的对应异常信息
-	 * 
 	 * @param int $code 异常号
 	 * @return string 返回异常号对应的异常组装信息原型
 	 */
 	protected function messageMapper($code) {
 		$messages = array(
-			self::ERROR_SYSTEM_ERROR => 'System error \'$message\'.', 
-			self::ERROR_CLASS_TYPE_ERROR => 'Incorrect class type \'$message\'.', 
-			self::ERROR_CLASS_NOT_EXIST => 'Unable to create instance for \'$message\' , class is not exist.', 
-			self::ERROR_CLASS_METHOD_NOT_EXIST => 'Unable to access the method \'$message\' in current class , the method is not exist or is protected.', 
-			self::ERROR_OBJECT_NOT_EXIST => 'Unable to access the object in current class \'$message\' ', 
-			self::ERROR_CONFIG_ERROR => 'Incorrect config. the config about \'$message\' error.', 
-			self::ERROR_PARAMETER_TYPE_ERROR => 'Incorrect parameter type \'$message\'.', 
+			self::ERROR_SYSTEM_ERROR => 'System error \'$message\'.',
+			self::ERROR_CLASS_TYPE_ERROR => 'Incorrect class type \'$message\'.',
+			self::ERROR_CLASS_NOT_EXIST => 'Unable to create instance for \'$message\' , class is not exist.',
+			self::ERROR_CLASS_METHOD_NOT_EXIST => 'Unable to access the method \'$message\' in current class , the method is not exist or is protected.',
+			self::ERROR_OBJECT_NOT_EXIST => 'Unable to access the object in current class \'$message\' ',
+			self::ERROR_CONFIG_ERROR => 'Incorrect config. the config about \'$message\' error.',
+			self::ERROR_PARAMETER_TYPE_ERROR => 'Incorrect parameter type \'$message\'.',
 			self::ERROR_RETURN_TYPE_ERROR => 'Incorrect return type for \'$message\'.');
 		return isset($messages[$code]) ? $messages[$code] : '';
 	}

@@ -22,7 +22,7 @@ class PwBaseController extends WindController {
 	protected $_a;
 	protected $_mc;
 	protected $_mca;
-	
+
 	/*
 	 * (non-PHPdoc) @see WindSimpleController::beforeAction()
 	 */
@@ -33,7 +33,7 @@ class PwBaseController extends WindController {
 		$this->_a = $handlerAdapter->getAction();
 		$this->_mc = $this->_m . '/' . $this->_c;
 		$this->_mca = $this->_mc . '/' . $this->_a;
-		
+
 		$this->loginUser = Wekit::getLoginUser();
 		$this->setTheme('site', null);
 	}
@@ -64,21 +64,21 @@ class PwBaseController extends WindController {
 	protected function showError($error = '', $referer = '', $refresh = false) {
 		if ($referer && !WindValidator::isUrl($referer)) {
 			$_referer = explode('#', $referer, 2);
-			$referer = WindUrlHelper::createUrl($_referer[0], array(), 
+			$referer = WindUrlHelper::createUrl($_referer[0], array(),
 				isset($_referer[1]) ? $_referer[1] : '');
 		}
 		$this->addMessage($referer, 'referer');
 		$this->addMessage($refresh, 'refresh');
 		parent::showMessage($error);
 	}
-	
+
 	/*
 	 * (non-PHPdoc) @see WindSimpleController::setDefaultTemplateName()
 	 */
 	protected function setDefaultTemplateName($handlerAdapter) {
 		$this->setTemplate($handlerAdapter->getController() . '_' . $handlerAdapter->getAction());
 	}
-	
+
 	/*
 	 * (non-PHPdoc) @see WindSimpleController::afterAction()
 	 */
@@ -90,17 +90,17 @@ class PwBaseController extends WindController {
 	 * action Hook 注册
 	 *
 	 * @param string $registerKey 扩展点别名
-	 * @param PwBaseHookService $bp        	
+	 * @param PwBaseHookService $bp
 	 * @throws PwException
 	 * @return void
 	 */
 	protected function runHook($registerKey, $bp) {
 		if (!$registerKey) return;
 		if (!$bp instanceof PwBaseHookService) {
-			throw new PwException('class.type.fail', 
+			throw new PwException('class.type.fail',
 				array(
-					'{parm1}' => 'src.library.base.PwBaseController.runHook', 
-					'{parm2}' => 'PwBaseHookService', 
+					'{parm1}' => 'src.library.base.PwBaseController.runHook',
+					'{parm2}' => 'PwBaseHookService',
 					'{parm3}' => get_class($bp)));
 		}
 		if (!$filters = PwHook::getRegistry($registerKey)) return;
@@ -113,7 +113,7 @@ class PwBaseController extends WindController {
 		}
 		$this->resolveActionFilter($_filters);
 	}
-	
+
 
 
 	/**

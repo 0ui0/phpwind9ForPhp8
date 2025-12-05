@@ -415,7 +415,7 @@
 						$(this).remove();
 					}
 				});
-				
+
 				for(i=0,len=hd_a.length;i<len;i++) {
 					var $this = $(hd_a[i]),
 						tab_id = $this.data('id'),
@@ -552,7 +552,7 @@
 					msg : '提交出错，请稍后刷新再试'
 				});
 			}
-			
+
 			this.popTabReset();
 		},
 		popTabReset : function(){
@@ -1239,7 +1239,7 @@
 
 		//判断tab显示
 		Wind.Util.ajaxMaskShow(design_zindex);
-		
+
 		try{
 			$.post(MODULE_EDIT_JUDGE, {
 				moduleid : moduleid,
@@ -1317,7 +1317,7 @@
 		e.preventDefault();
 		var id = $(this).data('id');
 		Wind.Util.ajaxMaskShow(design_zindex);
-		
+
 		try{
 			$.post(this.href, {name : id, pageid : pageid}, function(data){
 				Wind.Util.ajaxMaskRemove();
@@ -1504,7 +1504,7 @@
 		var box = mudule_box.find('.mod_box'),		//模块内容容器
 			clone = mudule_box.clone();
 		mudule_box.html('<div class="pop_loading"></div>');
-		
+
 		try{
 			$.post(MODULE_BOX_UPDATE, {moduleid : moduleid}, function(data){
 				//global.js
@@ -1909,12 +1909,12 @@
 			if($.browser.msie) {
 				//jQuery1.8 sizzlejs部分 会增加 sizset=""属性
 				var elem_sizset = clone.find('[sizset]');
-				
+
 				if(elem_sizset.length) {
 					elem_sizset.removeAttr('sizset');
 				}
 			}
-			
+
 			//替换模块内容
 			for(k=0;k<box.length;k++) {
 				var _id = $(box[k]).data('id');
@@ -1988,6 +1988,7 @@
 	//保存方法
 	function save(elem, savedata){
 		Wind.Util.ajaxMaskShow(design_zindex);
+		alert(elem.data('action'))
 		try{
 			$.ajax({
 				url : elem.data('action'),

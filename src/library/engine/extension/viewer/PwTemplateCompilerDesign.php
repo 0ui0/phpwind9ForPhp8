@@ -2,7 +2,7 @@
 Wind::import('WIND:viewer.AbstractWindTemplateCompiler');
 /**
  * 门户调用标签解析
- * 
+ *
  * <design role="" id=""></design>
  *
  * @author Shi Long <long.shi@alibaba-inc.com>
@@ -17,7 +17,7 @@ class PwTemplateCompilerDesign extends AbstractWindTemplateCompiler {
 	protected $role;
 	protected $pk;
 	protected $service;
-	
+
 	private $_uri;
 	private $_router;
 	/* (non-PHPdoc)
@@ -52,18 +52,18 @@ class PwTemplateCompilerDesign extends AbstractWindTemplateCompiler {
 				//return $this->service->afterDesign();
 		}
 	}
-	
+
 
 	public function getProperties() {
 		return array('id', 'role', 'pagename');
 	}
-	
+
 	private function _beforeDesign() {
 		Wind::import('SRV:design.srv.PwDesignCompile');
 		$this->service = PwDesignCompile::getInstance();
 		//$this->service = Wekit::load('design.srv.PwDesignCompile');
 		//纠结的template标签
-		if (!isset($this->_router)) { 
+		if (!isset($this->_router)) {
 			$this->_router();
 			list($pageName, $unique) = $this->_pageName();
 			if (!$pageName && !$unique) return false;
@@ -74,32 +74,33 @@ class PwTemplateCompilerDesign extends AbstractWindTemplateCompiler {
 		}
 		return true;
 	}
-	
+
 	private function _router() {
 		$router = Wind::getComponent('router');
-    	$m = $router->getModule(); 
-    	$c = $router->getController(); 
+    	$m = $router->getModule();
+    	$c = $router->getController();
     	$a = $router->getAction();
     	$this->_router = $m.'/'.$c.'/'.$a;
-    	
+
     	$hostInfo = $router->request->getHostInfo();
     	$requestUri = $router->request->getRequestUri();
-    	
+
     	if (preg_match('/^https?:\/\//i', $requestUri)) {
     		$this->_uri = urlencode($requestUri);
     	} else {
     		$this->_uri = urlencode($hostInfo . $requestUri);
     	}
+
 	}
-	
+
 	private function _pageName() {
 		$sysPage = Wekit::load('design.srv.router.PwDesignRouter')->get();
-		if ($this->_router && isset($sysPage[$this->_router])){ 
+		if ($this->_router && isset($sysPage[$this->_router])){
 			return $sysPage[$this->_router];
 		}
 		return array();
 	}
-	
+
 }
 
 ?>
