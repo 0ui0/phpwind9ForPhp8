@@ -62,7 +62,7 @@ class Pw {
 		$security = Wind::getComponent('security');
 		return base64_encode($security->encrypt($str, $key));
 	}
-	
+
 	/**
 	 * 解密方法
 	 *
@@ -109,7 +109,7 @@ class Pw {
 		if (self::strlen($string) <= $length) return $string;
 		return WindString::substr($string, $start, $length, Wekit::V('charset'), $dot);
 	}
-	
+
 	/**
 	 * 清理包含WindCode的字符串
 	 *
@@ -132,7 +132,7 @@ class Pw {
 		}
 		$pattern[] = '/\[[a-zA-Z]+[^]]*?\]/is';
 		$pattern[] = '/\[\/[a-zA-Z]*[^]]\]/is';
-	
+
 		$text = preg_replace($pattern, '', $text);
 		$stripTags && $text = strip_tags($text);
 		return $text;
@@ -159,7 +159,7 @@ class Pw {
 	public static function jsonDecode($value) {
 		return WindJson::decode($value, true, Wekit::V('charset'));
 	}
-	
+
 	/**
 	 * 将数组简易地转换成json格式
 	 *
@@ -174,7 +174,7 @@ class Pw {
 		}
 		return '{' . rtrim($str, ',') . '}';
 	}
-	
+
 	/**
 	 * 从数组(A)中找出指定键值的子集
 	 *
@@ -190,7 +190,7 @@ class Pw {
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * 页码转sql
 	 *
@@ -254,7 +254,7 @@ class Pw {
 	public static function getTime() {
 		return WEKIT_TIMESTAMP;
 	}
-	
+
 	/**
 	 * 获取今日零点时间戳
 	 *
@@ -263,7 +263,7 @@ class Pw {
 	public static function getTdtime() {
 		return self::str2time(self::time2str(WEKIT_TIMESTAMP, 'Y-m-d'));
 	}
-	
+
 	/**
 	 * 获取图片路径
 	 *
@@ -276,7 +276,7 @@ class Pw {
 		$storage = Wind::getComponent($isLocal ? 'localStorage' : 'storage');
 		return $storage->get($path, $ifthumb);
 	}
-	
+
 	/**
 	 * 获取用户头像地址
 	 *
@@ -297,7 +297,7 @@ class Pw {
             return $prefix . '/avatar/' . self::getUserDir($uid) . '/' . $file;
         }
 	}
-	
+
 	/**
 	 * 获取用户头像存储目录
 	 *
@@ -308,7 +308,7 @@ class Pw {
 		$uid = sprintf("%09d", $uid);
 		return substr($uid, 0, 3) . '/' . substr($uid, 3, 2) . '/' . substr($uid, 5, 2);
 	}
-	
+
 	/**
 	 * 删除附件
 	 *
@@ -321,7 +321,7 @@ class Pw {
 		$storage = Wind::getComponent($isLocal ? 'localStorage' : 'storage');
 		return $storage->delete($path, $ifthumb);
 	}
-	
+
 	/**
 	 * 删除本地文件
 	 *
@@ -387,7 +387,7 @@ class Pw {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 位运算比对
 	 *
@@ -399,7 +399,7 @@ class Pw {
 	public static function getstatus($status, $b, $len = 1) {
 		return $status >> --$b & (1 << $len) - 1;
 	}
-	
+
 	public static function windid($api) {
 		if (defined('WINDID_IS_NOTIFY')) {
 			$cls[$api] = PwWindidStd::getInstance($api);
@@ -408,19 +408,19 @@ class Pw {
 		}
 		return $cls[$api];
 	}
-	
+
 	/**
 	 * 根据指定的KEY收集二维列表中该key的值
-	 * 
+	 *
 	 * 如：有二维数组
 	 * $a = array(array('uid' => 1, 'username' => 'xxx'), array('uid' => 2, 'username' => 'test'));
 	 * var_export(Pw::collectByKey($a, 'uid'));
 	 * //输出：
 	 * array(1, 2);
 	 * 如果有一个元素中该值不存在，则不收集
-	 * 
+	 *
 	 * 注：只作用于二维数组
-	 * 
+	 *
 	 * @param array $data 待收集的二维列表
 	 * @param string $key 需要收集的
 	 * @return array
@@ -435,14 +435,14 @@ class Pw {
 		}
 		return $_collect;
 	}
-	
+
 	/**
 	 * 根据指定的key的顺序，排序数据
-	 * 
+	 *
 	 * 如：有二维数组
 	 * $a = array(
-	 * 	1 => array('id' => 1, 'username' => 'test1'), 
-	 * 	3 => array('id' => 3, 'username' => 'test3'), 
+	 * 	1 => array('id' => 1, 'username' => 'test1'),
+	 * 	3 => array('id' => 3, 'username' => 'test3'),
 	 * 	2 => array('id' => 2, 'username' => 'test2'),
 	 *  4 => array('username' => 'test4'),
 	 *  5 => array('id' => '', 'username' => 'test5'),
@@ -485,7 +485,7 @@ class Pw {
 		}
 		return $_newData;
 	}
-	
+
 	/**
 	 * 重写in_array
 	 *
@@ -496,7 +496,7 @@ class Pw {
 	public static function inArray($value, $array) {
 		return is_array($array) && in_array($value, $array);
 	}
-	
+
 	/**
 	 * 将HTML标签转义后输出字符串
 	 *
@@ -506,7 +506,7 @@ class Pw {
 	public static function echoStr($str) {
 		echo WindSecurity::escapeHTML($str);
 	}
-	
+
 	/**
 	 * 将HTML标签转义后输出JSON数据
 	 *
@@ -541,7 +541,7 @@ class Pw {
         $content = preg_replace('/\][^\[]+\[\/(tao|share|flash|mp3|img)/i', '][', $content);
 //        $content = preg_replace('/\[s:.+?\]/i','［表情］',$content);
         $content = preg_replace('/\[(?!s:)[^\]]*\]/i','',  strip_tags($content));//不过滤表情标签
-        ///$content = str_replace(array('[视频]','[音乐]','[附件]'),array('','',''),trim(Wekit::load('forum.srv.PwThreadService')->displayContent($content,1,array(),strlen($content)),'.')); //过滤ubb标签  
+        ///$content = str_replace(array('[视频]','[音乐]','[附件]'),array('','',''),trim(Wekit::load('forum.srv.PwThreadService')->displayContent($content,1,array(),strlen($content)),'.')); //过滤ubb标签
 
         return array("share"=>$share,"content"=>$content);
     }

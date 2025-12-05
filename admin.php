@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+$debugConfig = include __DIR__ . '/conf/debug.php';
+define('WIND_DEBUG', isset($debugConfig['WIND_DEBUG']) ? $debugConfig['WIND_DEBUG'] : 0);
 
 define('BOOT_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 require './src/wekit.php';

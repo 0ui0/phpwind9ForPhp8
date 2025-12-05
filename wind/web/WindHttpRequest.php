@@ -610,7 +610,10 @@ class WindHttpRequest implements IWindRequest {
 		} elseif (($requestUri = $this->getServer('ORIG_PATH_INFO')) != null) {
 			$this->_requestUri = $requestUri;
 			if (($query = $this->getServer('QUERY_STRING')) != null) $this->_requestUri .= '?' . $query;
-		} else
+		} elseif (($requestUri = $this->getServer('PHP_SELF')) != null) {
+            $this->_requestUri = $requestUri;
+            if (($query = $this->getServer('QUERY_STRING')) != null) $this->_requestUri .= '?' . $query;
+        } else
 			throw new WindException('[web.WindHttpRequest._initRequestUri] unable to determine the request URI.');
 	}
 

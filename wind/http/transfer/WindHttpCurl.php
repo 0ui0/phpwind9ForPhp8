@@ -16,28 +16,28 @@ final class WindHttpCurl extends AbstractWindHttp {
 	public function getInfo() {
 		return curl_getinfo($this->httpHandler);
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::createHttpHandler()
 	 */
 	protected function createHttpHandler() {
 		return curl_init();
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::request()
 	 */
 	public function request($name, $value = null) {
 		return curl_setopt($this->getHttpHandler(), $name, $value);
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::response()
 	 */
 	public function response() {
 		return curl_exec($this->getHttpHandler());
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::close()
 	 */
@@ -46,7 +46,7 @@ final class WindHttpCurl extends AbstractWindHttp {
 		curl_close($this->httpHandler);
 		$this->httpHandler = null;
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::getError()
 	 */
@@ -55,7 +55,7 @@ final class WindHttpCurl extends AbstractWindHttp {
 		$this->eno = curl_errno($this->getHttpHandler());
 		return $this->err ? $this->eno . ':' . $this->err : '';
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::send()
 	 */
@@ -73,7 +73,7 @@ final class WindHttpCurl extends AbstractWindHttp {
 					break;
 			}
 		}
-		
+
 		$this->request(CURLOPT_HEADER, $this->_header);
 		$this->request(CURLOPT_NOBODY, !$this->_body);
 		$this->request(CURLOPT_TIMEOUT, $this->timeout);
@@ -86,15 +86,15 @@ final class WindHttpCurl extends AbstractWindHttp {
 		if ($options && is_array($options)) {
 			curl_setopt_array($this->httpHandler, $options);
 		}
-		if (!isset($options[CURLOPT_USERAGENT])) $this->request(CURLOPT_USERAGENT, 
+		if (!isset($options[CURLOPT_USERAGENT])) $this->request(CURLOPT_USERAGENT,
 			'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; InfoPath.1)');
-		
+
 		$_cookie = '';
 		foreach ($this->cookie as $key => $value) {
 			$_cookie .= ($_cookie !== '' ? "" : "; ") . $key . "=" . $value;
 		}
 		$this->request(CURLOPT_COOKIE, $_cookie);
-		
+
 		$_header = array();
 		foreach ($this->header as $key => $value) {
 			$_header[] = $key . ": " . $value;
@@ -134,7 +134,7 @@ final class WindHttpCurl extends AbstractWindHttp {
 		}
 		return $value;
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::getStatus()
 	 */
@@ -151,7 +151,7 @@ final class WindHttpCurl extends AbstractWindHttp {
 		if (!$this->_redirects) return;
 		if ($this->_maxRedirs <= 0) return;
 		$maxRedirs = $this->_maxRedirs;
-		
+
 		$newurl = curl_getinfo($this->httpHandler, CURLINFO_EFFECTIVE_URL);
 		$rch = curl_copy_handle($this->httpHandler);
 		curl_setopt($rch, CURLOPT_HEADER, true);
@@ -161,7 +161,7 @@ final class WindHttpCurl extends AbstractWindHttp {
 		do {
 			curl_setopt($rch, CURLOPT_URL, $newurl);
 			$header = curl_exec($rch);
-			
+
 			if (curl_errno($rch)) {
 				$code = 0;
 			} else {

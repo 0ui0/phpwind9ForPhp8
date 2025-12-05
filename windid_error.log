@@ -1,0 +1,433 @@
+[05-Dec-2025 16:24:10 UTC] windid.php request received: 2025-12-05 16:24:10
+[05-Dec-2025 16:24:10 UTC] Request method: POST
+[05-Dec-2025 16:24:10 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764950993
+[05-Dec-2025 16:24:10 UTC] POST data: testdata=1
+[05-Dec-2025 16:24:27 UTC] windid.php request received: 2025-12-05 16:24:27
+[05-Dec-2025 16:24:27 UTC] Request method: POST
+[05-Dec-2025 16:24:27 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764950993
+[05-Dec-2025 16:24:27 UTC] POST data: testdata=1
+[05-Dec-2025 16:24:27 UTC] Before require wekit.php
+[05-Dec-2025 16:24:27 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:24:27 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:24:43 UTC] windid.php request received: 2025-12-05 16:24:43
+[05-Dec-2025 16:24:43 UTC] Request method: POST
+[05-Dec-2025 16:24:43 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764950993
+[05-Dec-2025 16:24:43 UTC] POST data: testdata=1
+[05-Dec-2025 16:24:43 UTC] Before require wekit.php
+[05-Dec-2025 16:24:43 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:24:43 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:24:43 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:24:43 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:24:59 UTC] windid.php request received: 2025-12-05 16:24:59
+[05-Dec-2025 16:24:59 UTC] Request method: POST
+[05-Dec-2025 16:24:59 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764950993
+[05-Dec-2025 16:24:59 UTC] POST data: testdata=1
+[05-Dec-2025 16:24:59 UTC] Before require wekit.php
+[05-Dec-2025 16:24:59 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:24:59 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:24:59 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:24:59 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:24:59 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:24:59 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:24:59 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:24:59 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:25:15 UTC] windid.php request received: 2025-12-05 16:25:15
+[05-Dec-2025 16:25:15 UTC] Request method: POST
+[05-Dec-2025 16:25:15 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764950993
+[05-Dec-2025 16:25:15 UTC] POST data: testdata=1
+[05-Dec-2025 16:25:15 UTC] Before require wekit.php
+[05-Dec-2025 16:25:15 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:25:15 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:25:15 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:25:15 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:25:15 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:25:15 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:25:15 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:25:15 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:25:15 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764950993
+[05-Dec-2025 16:25:15 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764950993
+    [windidkey] => d444ec21adb49609f0b3b1ae564c9944
+)
+
+[05-Dec-2025 16:25:15 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:25:15 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:25:15 Etc/GMT+0] Generated appKey: d444ec21adb49609f0b3b1ae564c9944
+[05-Dec-2025 16:25:42 UTC] windid.php request received: 2025-12-05 16:25:42
+[05-Dec-2025 16:25:42 UTC] Request method: POST
+[05-Dec-2025 16:25:42 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764950993
+[05-Dec-2025 16:25:42 UTC] POST data: testdata=1
+[05-Dec-2025 16:25:42 UTC] Before require wekit.php
+[05-Dec-2025 16:25:42 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:25:42 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:25:42 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:25:42 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:25:42 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:25:42 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:25:42 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:25:42 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:25:42 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764950993
+[05-Dec-2025 16:25:42 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764950993
+    [windidkey] => d444ec21adb49609f0b3b1ae564c9944
+)
+
+[05-Dec-2025 16:25:42 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:25:42 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:25:42 Etc/GMT+0] Generated appKey: d444ec21adb49609f0b3b1ae564c9944
+[05-Dec-2025 16:26:00 UTC] windid.php request received: 2025-12-05 16:26:00
+[05-Dec-2025 16:26:00 UTC] Request method: POST
+[05-Dec-2025 16:26:00 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764950993
+[05-Dec-2025 16:26:00 UTC] POST data: testdata=1
+[05-Dec-2025 16:26:00 UTC] Before require wekit.php
+[05-Dec-2025 16:26:00 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:26:00 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:26:00 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:26:00 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:26:00 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:26:00 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:26:00 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:26:00 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:26:00 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764950993
+[05-Dec-2025 16:26:00 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764950993
+    [windidkey] => d444ec21adb49609f0b3b1ae564c9944
+)
+
+[05-Dec-2025 16:26:00 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:26:00 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:26:00 Etc/GMT+0] Generated appKey: d444ec21adb49609f0b3b1ae564c9944
+[05-Dec-2025 16:26:00 Etc/GMT+0] Request timeout
+[05-Dec-2025 16:26:38 UTC] windid.php request received: 2025-12-05 16:26:38
+[05-Dec-2025 16:26:38 UTC] Request method: POST
+[05-Dec-2025 16:26:38 UTC] Request URI: /windid.php?windidkey=d444ec21adb49609f0b3b1ae564c9944&operation=999&clientid=1&time=1764951994
+[05-Dec-2025 16:26:38 UTC] POST data: testdata=1
+[05-Dec-2025 16:26:38 UTC] Before require wekit.php
+[05-Dec-2025 16:26:38 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:26:38 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:26:38 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:26:38 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:26:38 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:26:38 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:26:38 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:26:38 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:26:38 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764951994
+[05-Dec-2025 16:26:38 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764951994
+    [windidkey] => d444ec21adb49609f0b3b1ae564c9944
+)
+
+[05-Dec-2025 16:26:38 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:26:38 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:26:38 Etc/GMT+0] Generated appKey: 3be3a6cc9d04a1ab9ac4ccd1c2b7332b
+[05-Dec-2025 16:26:38 Etc/GMT+0] appKey verification failed
+[05-Dec-2025 16:26:52 UTC] windid.php request received: 2025-12-05 16:26:52
+[05-Dec-2025 16:26:52 UTC] Request method: POST
+[05-Dec-2025 16:26:52 UTC] Request URI: /windid.php?windidkey=80cb3c6e3ca73097d055c87cc5918f08&operation=999&clientid=1&time=1764951994
+[05-Dec-2025 16:26:52 UTC] POST data: testdata=1
+[05-Dec-2025 16:26:52 UTC] Before require wekit.php
+[05-Dec-2025 16:26:52 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:26:52 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:26:52 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:26:52 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:26:52 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:26:52 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:26:52 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:26:52 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:26:52 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764951994
+[05-Dec-2025 16:26:52 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764951994
+    [windidkey] => 80cb3c6e3ca73097d055c87cc5918f08
+)
+
+[05-Dec-2025 16:26:52 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:26:52 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:26:52 Etc/GMT+0] Generated appKey: 3be3a6cc9d04a1ab9ac4ccd1c2b7332b
+[05-Dec-2025 16:26:52 Etc/GMT+0] appKey verification failed
+[05-Dec-2025 16:27:34 UTC] windid.php request received: 2025-12-05 16:27:34
+[05-Dec-2025 16:27:34 UTC] Request method: POST
+[05-Dec-2025 16:27:34 UTC] Request URI: /windid.php?windidkey=3be3a6cc9d04a1ab9ac4ccd1c2b7332b&operation=999&clientid=1&time=1764951994
+[05-Dec-2025 16:27:34 UTC] POST data: testdata=1
+[05-Dec-2025 16:27:34 UTC] Before require wekit.php
+[05-Dec-2025 16:27:34 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:27:34 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:27:34 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:27:34 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:27:34 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:27:34 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:27:34 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:27:34 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:27:34 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764951994
+[05-Dec-2025 16:27:34 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764951994
+    [windidkey] => 3be3a6cc9d04a1ab9ac4ccd1c2b7332b
+)
+
+[05-Dec-2025 16:27:34 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:27:34 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:27:34 Etc/GMT+0] Generated appKey: 3be3a6cc9d04a1ab9ac4ccd1c2b7332b
+[05-Dec-2025 16:27:34 Etc/GMT+0] beforeAction completed successfully
+[05-Dec-2025 16:27:34 Etc/GMT+0] IndexController::run called
+[05-Dec-2025 16:27:34 Etc/GMT+0] Operation: 999
+[05-Dec-2025 16:27:34 Etc/GMT+0] Method: test, Args: Array
+(
+    [0] => testdata
+)
+
+[05-Dec-2025 16:27:34 Etc/GMT+0] Created PwWindidInform service
+[05-Dec-2025 16:27:34 Etc/GMT+0] Processed args: Array
+(
+    [0] => 1
+)
+
+[05-Dec-2025 16:27:34 Etc/GMT+0] Calling method test
+[05-Dec-2025 16:27:34 Etc/GMT+0] Method result: 1
+[05-Dec-2025 16:28:44 UTC] windid.php request received: 2025-12-05 16:28:44
+[05-Dec-2025 16:28:44 UTC] Request method: GET
+[05-Dec-2025 16:28:44 UTC] Request URI: /windid.php?windidkey=fba47f9bc45c96e7dd0b08c8f473985b&operation=999&clientid=1&time=1764952109
+[05-Dec-2025 16:28:44 UTC] POST data: 
+[05-Dec-2025 16:28:44 UTC] Before require wekit.php
+[05-Dec-2025 16:28:44 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:28:44 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:28:44 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:28:44 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:28:44 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:28:44 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:28:44 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:28:44 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:28:44 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764952109
+[05-Dec-2025 16:28:44 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764952109
+    [windidkey] => fba47f9bc45c96e7dd0b08c8f473985b
+)
+
+[05-Dec-2025 16:28:44 Etc/GMT+0] POST params: Array
+(
+)
+
+[05-Dec-2025 16:28:44 Etc/GMT+0] String for md5: operation999
+[05-Dec-2025 16:28:44 Etc/GMT+0] Generated appKey: 9e8a72b5b67b433f44e3527b2f9f0ac0
+[05-Dec-2025 16:28:44 Etc/GMT+0] appKey verification failed
+[05-Dec-2025 16:31:54 UTC] windid.php request received: 2025-12-05 16:31:54
+[05-Dec-2025 16:31:54 UTC] Request method: POST
+[05-Dec-2025 16:31:54 UTC] Request URI: /windid.php?windidkey=fba47f9bc45c96e7dd0b08c8f473985b&operation=999&clientid=1&time=1764952109
+[05-Dec-2025 16:31:54 UTC] POST data: testdata=1
+[05-Dec-2025 16:31:54 UTC] Before require wekit.php
+[05-Dec-2025 16:31:54 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:31:54 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:31:54 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:31:54 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:31:54 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:31:54 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:31:54 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:31:54 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:31:54 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764952109
+[05-Dec-2025 16:31:54 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764952109
+    [windidkey] => fba47f9bc45c96e7dd0b08c8f473985b
+)
+
+[05-Dec-2025 16:31:54 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:31:54 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:31:54 Etc/GMT+0] Generated appKey: fba47f9bc45c96e7dd0b08c8f473985b
+[05-Dec-2025 16:31:54 Etc/GMT+0] Request timeout
+[05-Dec-2025 16:32:12 UTC] windid.php request received: 2025-12-05 16:32:12
+[05-Dec-2025 16:32:12 UTC] Request method: POST
+[05-Dec-2025 16:32:12 UTC] Request URI: /windid.php?windidkey=bf9469cd45b97e1929ca1406ada21c78&operation=999&clientid=1&time=1764952325
+[05-Dec-2025 16:32:12 UTC] POST data: testdata=1
+[05-Dec-2025 16:32:12 UTC] Before require wekit.php
+[05-Dec-2025 16:32:12 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:32:12 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:32:12 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:32:12 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:32:12 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:32:12 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:32:12 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:32:12 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:32:12 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764952325
+[05-Dec-2025 16:32:12 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764952325
+    [windidkey] => bf9469cd45b97e1929ca1406ada21c78
+)
+
+[05-Dec-2025 16:32:12 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:32:12 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:32:12 Etc/GMT+0] Generated appKey: bf9469cd45b97e1929ca1406ada21c78
+[05-Dec-2025 16:32:12 Etc/GMT+0] beforeAction completed successfully
+[05-Dec-2025 16:32:12 Etc/GMT+0] IndexController::run called
+[05-Dec-2025 16:32:12 Etc/GMT+0] Operation: 999
+[05-Dec-2025 16:32:12 Etc/GMT+0] Method: test, Args: Array
+(
+    [0] => testdata
+)
+
+[05-Dec-2025 16:32:12 Etc/GMT+0] Created PwWindidInform service
+[05-Dec-2025 16:32:12 Etc/GMT+0] Processed args: Array
+(
+    [0] => 1
+)
+
+[05-Dec-2025 16:32:12 Etc/GMT+0] Calling method test
+[05-Dec-2025 16:32:12 Etc/GMT+0] Method result: 1
+[05-Dec-2025 16:32:41 UTC] windid.php request received: 2025-12-05 16:32:41
+[05-Dec-2025 16:32:41 UTC] Request method: GET
+[05-Dec-2025 16:32:41 UTC] Request URI: /windid.php?operation=999&clientid=1&time=1764952346&windidkey=ab997a6f7debd66efe209f765a4a41bc
+[05-Dec-2025 16:32:41 UTC] POST data: 
+[05-Dec-2025 16:32:41 UTC] Before require wekit.php
+[05-Dec-2025 16:32:41 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:32:41 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:32:41 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:32:41 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:32:41 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:32:41 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:32:41 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:32:41 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:32:41 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764952346
+[05-Dec-2025 16:32:41 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764952346
+    [windidkey] => ab997a6f7debd66efe209f765a4a41bc
+)
+
+[05-Dec-2025 16:32:41 Etc/GMT+0] POST params: Array
+(
+)
+
+[05-Dec-2025 16:32:41 Etc/GMT+0] String for md5: operation999
+[05-Dec-2025 16:32:41 Etc/GMT+0] Generated appKey: d7d7b225b3ff27d9c5e8b5d68c03faf6
+[05-Dec-2025 16:32:41 Etc/GMT+0] appKey verification failed
+[05-Dec-2025 16:33:08 UTC] windid.php request received: 2025-12-05 16:33:08
+[05-Dec-2025 16:33:08 UTC] Request method: POST
+[05-Dec-2025 16:33:08 UTC] Request URI: /windid.php?operation=999&clientid=1&time=1764952388&windidkey=2df5c5ffa1e63308312bd6ab521ab792
+[05-Dec-2025 16:33:08 UTC] POST data: testdata=1
+[05-Dec-2025 16:33:08 UTC] Before require wekit.php
+[05-Dec-2025 16:33:08 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:33:08 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:33:08 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:33:08 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:33:08 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:33:08 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:33:08 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:33:08 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:33:08 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764952388
+[05-Dec-2025 16:33:08 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764952388
+    [windidkey] => 2df5c5ffa1e63308312bd6ab521ab792
+)
+
+[05-Dec-2025 16:33:08 Etc/GMT+0] POST params: Array
+(
+    [testdata] => 1
+)
+
+[05-Dec-2025 16:33:08 Etc/GMT+0] String for md5: operation999testdata1
+[05-Dec-2025 16:33:08 Etc/GMT+0] Generated appKey: 2df5c5ffa1e63308312bd6ab521ab792
+[05-Dec-2025 16:33:08 Etc/GMT+0] beforeAction completed successfully
+[05-Dec-2025 16:33:08 Etc/GMT+0] IndexController::run called
+[05-Dec-2025 16:33:08 Etc/GMT+0] Operation: 999
+[05-Dec-2025 16:33:08 Etc/GMT+0] Method: test, Args: Array
+(
+    [0] => testdata
+)
+
+[05-Dec-2025 16:33:08 Etc/GMT+0] Created PwWindidInform service
+[05-Dec-2025 16:33:08 Etc/GMT+0] Processed args: Array
+(
+    [0] => 1
+)
+
+[05-Dec-2025 16:33:08 Etc/GMT+0] Calling method test
+[05-Dec-2025 16:33:08 Etc/GMT+0] Method result: 1
+[05-Dec-2025 16:34:59 UTC] windid.php request received: 2025-12-05 16:34:59
+[05-Dec-2025 16:34:59 UTC] Request method: GET
+[05-Dec-2025 16:34:59 UTC] Request URI: /windid.php?operation=999&clientid=1&time=1764952484&windidkey=61947db17c45445f10d33846190d249a
+[05-Dec-2025 16:34:59 UTC] POST data: 
+[05-Dec-2025 16:34:59 UTC] Before require wekit.php
+[05-Dec-2025 16:34:59 Etc/GMT+0] After require wekit.php
+[05-Dec-2025 16:34:59 Etc/GMT+0] Before Wekit::run
+[05-Dec-2025 16:34:59 Etc/GMT+0] windidnotifyBoot::_initUser called
+[05-Dec-2025 16:34:59 Etc/GMT+0] windidnotifyBoot::runApps called
+[05-Dec-2025 16:34:59 Etc/GMT+0] IndexController::beforeAction called
+[05-Dec-2025 16:34:59 Etc/GMT+0] After parent::beforeAction
+[05-Dec-2025 16:34:59 Etc/GMT+0] Getting windid config
+[05-Dec-2025 16:34:59 Etc/GMT+0] Checking appKey
+[05-Dec-2025 16:34:59 Etc/GMT+0] WindidUtility::appKey called with apiId: 1, time: 1764952484
+[05-Dec-2025 16:34:59 Etc/GMT+0] GET params: Array
+(
+    [clientid] => 1
+    [operation] => 999
+    [time] => 1764952484
+    [windidkey] => 61947db17c45445f10d33846190d249a
+)
+
+[05-Dec-2025 16:34:59 Etc/GMT+0] POST params: Array
+(
+)
+
+[05-Dec-2025 16:34:59 Etc/GMT+0] String for md5: operation999
+[05-Dec-2025 16:34:59 Etc/GMT+0] Generated appKey: 1f333e10ddf6bdb616e4cb1cd7960dca
+[05-Dec-2025 16:34:59 Etc/GMT+0] appKey verification failed

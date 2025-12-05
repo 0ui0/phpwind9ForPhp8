@@ -8,17 +8,17 @@ Wind::import('SRC:bootstrap.phpwindBoot');
  * @package wekit
  */
 class windidnotifyBoot extends phpwindBoot {
-	
+
 	/* (non-PHPdoc)
 	 * @see phpwind::runApps()
 	 */
 	public function runApps($front = null) {
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see phpwind::_initUser()
 	 */
 	protected function _initUser() {
-		
+
 	}
 }

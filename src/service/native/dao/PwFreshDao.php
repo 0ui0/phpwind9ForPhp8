@@ -5,7 +5,7 @@
  * @license: http://www.phpwind.com
  * @version: $Id
  * @lastchange: 2015-02-27 11:57:16
- * @desc: 
+ * @desc:
  **/
 class PwFreshDao extends PwBaseDao {
     protected $_pk = 'fresh_id';
@@ -24,33 +24,34 @@ class PwFreshDao extends PwBaseDao {
     }
 
     /**
-     * @param mixed $account 
-     * @param mixed $type 
+     * @param mixed $account
+     * @param mixed $type
      * @access public
      * @return array
      */
     public function getFresh(){
         $sql = $this->_bindTable('SELECT fresh_id,title,href,img,des,vieworder FROM %s order by vieworder asc', $this->getTable());
         $smt = $this->getConnection()->createStatement($sql);
-        return $smt->queryAll(array($banner_type)); 
+        // return $smt->queryAll(array($banner_type)); 未知变量
+        return $smt->queryAll();
     }
 
     /**
-     * getOneFresh 
-     * 
-     * @param mixed $fresh_id 
+     * getOneFresh
+     *
+     * @param mixed $fresh_id
      * @access public
      * @return void
      */
     public function getOneFresh($fresh_id){
         $sql = $this->_bindTable('SELECT fresh_id,title,href,img,des,vieworder FROM %s WHERE fresh_id=?', $this->getTable());
         $smt = $this->getConnection()->createStatement($sql);
-        return $smt->getOne(array($fresh_id)); 
+        return $smt->getOne(array($fresh_id));
     }
 
     /**
-     * getMaxId 
-     * 
+     * getMaxId
+     *
      * @access public
      * @return void
      */
@@ -61,10 +62,10 @@ class PwFreshDao extends PwBaseDao {
     }
 
     /**
-     * updateFresh 
-     * 
-     * @param mixed $fresh_id 
-     * @param mixed $data 
+     * updateFresh
+     *
+     * @param mixed $fresh_id
+     * @param mixed $data
      * @access public
      * @return void
      */
@@ -77,9 +78,9 @@ class PwFreshDao extends PwBaseDao {
     }
 
     /**
-     * delete 
-     * 
-     * @param mixed $fresh_id 
+     * delete
+     *
+     * @param mixed $fresh_id
      * @access public
      * @return void
      */

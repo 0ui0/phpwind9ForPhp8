@@ -16,13 +16,13 @@ final class WindHttpSocket extends AbstractWindHttp {
 	private $path = '';
 	private $query = '';
 	private $responseHeader = array();
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::createHttpHandler()
 	 */
 	protected function createHttpHandler() {
 		$url = parse_url($this->url);
-		
+
 		$this->host = isset($url['host']) ? $url['host'] : '';
 		$this->port = isset($url['port']) ? $url['port'] : 80;
 		$this->path = isset($url['path']) ? $url['path'] : '/';
@@ -30,14 +30,14 @@ final class WindHttpSocket extends AbstractWindHttp {
 		$this->path .= $this->query;
 		return fsockopen($this->host, $this->port, $this->eno, $this->err, $this->timeout);
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::request()
 	 */
 	public function request($name, $value = null) {
 		return fputs($this->httpHandler, ($value ? $name . ': ' . $value : $name));
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::response()
 	 */
@@ -96,7 +96,7 @@ final class WindHttpSocket extends AbstractWindHttp {
 		}
 		return $outData;
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::close()
 	 */
@@ -105,20 +105,20 @@ final class WindHttpSocket extends AbstractWindHttp {
 		fclose($this->httpHandler);
 		$this->httpHandler = null;
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::getError()
 	 */
 	public function getError() {
 		return $this->err ? $this->eno . ':' . $this->err : '';
 	}
-	
+
 	/* (non-PHPdoc)
 	 * @see AbstractWindHttp::send()
 	 */
 	public function send($method = 'GET', $options = array()) {
 		$this->followLocation();
-		
+
 		$method = strtoupper($method);
 		if ($this->data) {
 			switch ($method) {
@@ -137,7 +137,7 @@ final class WindHttpSocket extends AbstractWindHttp {
 					break;
 			}
 		}
-		
+
 		$this->setHeader($method . " " . $this->path . " HTTP/1.1");
 		$this->setHeader($this->host, "Host");
 		!empty($_header) && $this->setHeader($_header);
@@ -148,7 +148,7 @@ final class WindHttpSocket extends AbstractWindHttp {
 			$this->setHeader($_cookit, "Cookie");
 		}
 		$options && $this->setHeader($options);
-		
+
 		$_request = '';
 		foreach ($this->header as $key => $value) {
 			if (is_string($key)) {
@@ -166,7 +166,7 @@ final class WindHttpSocket extends AbstractWindHttp {
 	/**
 	 * url forward 兼容处理
 	 * 获取真正的请求链接，并初始化socket句柄
-	 * 
+	 *
 	 * @param array $options
 	 */
 	private function followLocation() {
@@ -182,7 +182,7 @@ final class WindHttpSocket extends AbstractWindHttp {
 			$header = $socket->send();
 			$code = $socket->getStatus();
 			$socket->close();
-			
+
 			if ($code == 301 || $code == 302) {
 				preg_match('/Location:(.*?)\n/', $header, $matches);
 				$newurl = trim(array_pop($matches));
@@ -190,7 +190,7 @@ final class WindHttpSocket extends AbstractWindHttp {
 				$code = 0;
 			}
 		} while ($code && --$maxRedirs);
-		
+
 		if ($newurl == $this->url) return;
 		$this->url = $newurl;
 		$this->httpHandler = $this->createHttpHandler();

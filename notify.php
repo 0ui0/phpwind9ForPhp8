@@ -46,7 +46,7 @@ function getInput($key, $method = 'get') {
 	   case 'get':
 		  return isset($_GET[$key]) ? $_GET[$key] : null;
 	   case 'post':
-		  return isset($_POST[$key]) ? $_POST[$key] : null;	  
+		  return isset($_POST[$key]) ? $_POST[$key] : null;
 	   default:
 			return null;
 	}
@@ -65,19 +65,19 @@ function showMessage($message = '', $referer = '', $refresh = false) {
 
 
 class notify{
-	
+
 	public function test($uid) {
 		return $uid ? true : false;
 	}
-	
-	
+
+
 	public function addUser($uid) {
 		$api = WindidApi::api('user');
 		$user = $api->getUser($uid);
 		//你系统的   addUser($user);
 		return true;
 	}
-	
+
 	public function editUser($uid) {
 		$api = WindidApi::api('user');
 		$user = $api->getUser($uid);
@@ -85,7 +85,7 @@ class notify{
 		return true;
 	}
 
-	
+
 
 
 }

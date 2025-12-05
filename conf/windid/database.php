@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 return array(
 	'dsn' => 'mysql:host=localhost;dbname=nextwind10;port=3306',
@@ -10,7 +10,7 @@ return array(
 );
 */
 
-$database = include  WINDID_PATH.'/../../conf/database.php';	
+$database = include  WINDID_PATH.'/../../conf/database.php';
 $database['tableprefix'] .= 'windid_';
 return $database;
 ?>

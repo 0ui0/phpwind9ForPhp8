@@ -39,7 +39,7 @@
 				clientLoop(tr.next());
 			},
 			error : function(){
-				
+
 			}
 		});
 	}

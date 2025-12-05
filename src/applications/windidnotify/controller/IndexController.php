@@ -10,12 +10,12 @@ Wind::import('WINDID:service.base.WindidUtility');
  * @author $Author: gao.wanggao $ Foxsee@aliyun.com
  * @copyright ?2003-2103 phpwind.com
  * @license http://www.phpwind.com
- * @version $Id: IndexController.php 29741 2013-06-28 07:54:24Z gao.wanggao $ 
- * @package 
+ * @version $Id: IndexController.php 29741 2013-06-28 07:54:24Z gao.wanggao $
+ * @package
  */
 class IndexController extends PwBaseController {
-	
-	public  function beforeAction($handlerAdapter) {	
+
+	public  function beforeAction($handlerAdapter) {
 		parent::beforeAction($handlerAdapter);
 		$_windidkey = $this->getInput('windidkey', 'get');
 		$_time = (int)$this->getInput('time', 'get');
@@ -31,7 +31,7 @@ class IndexController extends PwBaseController {
 		$time = Pw::getTime();
 		if ($time - $_time > 120) $this->showError('timeout');
 	}
-	
+
 	public function run() {
 		$operation = (int)$this->getInput('operation', 'get');
 		list($method, $args) = $this->getMethod($operation);
@@ -43,14 +43,14 @@ class IndexController extends PwBaseController {
 		if ($result == true) $this->showMessage('success');
 		$this->showError('fail');
 	}
-	
+
 	protected function getMethod($operation) {
 		$config = include Wind::getRealPath('WINDID:service.base.WindidNotifyConf.php', true);
 		$method = isset($config[$operation]['method']) ? $config[$operation]['method'] : '';
 		$args = isset($config[$operation]['args']) ? $config[$operation]['args'] : array();
 		return array($method, $args);
 	}
-	
+
 	protected function showError($message = '', $referer = '', $refresh = false) {
 		Pw::echoStr($message);
 		exit();

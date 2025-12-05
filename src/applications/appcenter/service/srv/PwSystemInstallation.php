@@ -40,10 +40,10 @@ class PwSystemInstallation extends PwInstallApplication {
 		$notice = 0;
 		$upgradeInfo = $patchInfo = array();
 		if (Wekit::load('ADMIN:service.srv.AdminFounderService')->isFounder($loginUser->username)) {
-			$upgradeInfo = $this->checkUpgrade();
-			$upgradeInfo && is_array($upgradeInfo) && $notice |= 1;
-			$patchInfo = Wekit::load('APPCENTER:service.srv.PwPatchUpdate')->checkUpgrade();
-			$patchInfo && is_array($patchInfo) && $notice |= 2;
+			// $upgradeInfo = $this->checkUpgrade();
+			// $upgradeInfo && is_array($upgradeInfo) && $notice |= 1;
+			// $patchInfo = Wekit::load('APPCENTER:service.srv.PwPatchUpdate')->checkUpgrade();
+			// $patchInfo && is_array($patchInfo) && $notice |= 2;
 		}
 		$url = '';
 		$f = '<a data-level="2" data-parent="%s" data-id="%s" href="%s" class="J_tabframe_trigger">立即升级</a>';
@@ -63,6 +63,7 @@ class PwSystemInstallation extends PwInstallApplication {
 			default:
 				$notice = '';
 		}
+		// 确保返回正确的数组结构，避免前端或调用方报错
 		return array('notice' => $notice . ($url ? sprintf($f, 'platform', 'platform_upgrade', $url) : ''), 'info' => array($patchInfo, $upgradeInfo));
 	}
 

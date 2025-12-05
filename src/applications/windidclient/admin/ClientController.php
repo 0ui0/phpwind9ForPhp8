@@ -7,22 +7,23 @@ Wind::import('ADMIN:library.AdminBaseController');
  * @author $Author: gao.wanggao $ Foxsee@aliyun.com
  * @copyright ?2003-2103 phpwind.com
  * @license http://www.phpwind.com
- * @version $Id: ClientController.php 29745 2013-06-28 09:07:39Z gao.wanggao $ 
- * @package 
+ * @version $Id: ClientController.php 29745 2013-06-28 09:07:39Z gao.wanggao $
+ * @package
  */
-class ClientController extends AdminBaseController { 
-	
+class ClientController extends AdminBaseController {
+
 	public function run() {
 		$list = $this->_getAppDs()->getList();
 		$data = $urls = array();
 		$time = Pw::getTime();
 		$this->setOutput($list, 'list');
 	}
-	
+
 	public function clientTestAction() {
 		$clientid = $this->getInput('clientid');
 		$client = $this->_getAppDs()->getApp($clientid);
 		if (!$client) $this->showError('WINDID:fail');
+
 		$time = Pw::getTime();
 		$array = array(
 			'windidkey'=>WindidUtility::appKey($client['id'], $time, $client['secretkey'], array('operation'=>999), array('testdata'=>1)),
@@ -32,17 +33,19 @@ class ClientController extends AdminBaseController {
 		);
 		$post = array('testdata'=>1);
 		$url = WindidUtility::buildClientUrl($client['siteurl'], $client['apifile']) . http_build_query($array);
+
 		$result = WindidUtility::buildRequest($url, $post);
-		if (trim($result) === 'success')$this->showMessage('WINDID:success');
+
+		if (trim($result) === 'success') $this->showMessage('WINDID:success');
 		$this->showError('WINDID:fail');
 	}
-	
+
 	public function addAction() {
 		$rand = WindUtility::generateRandStr(10);
 		$this->setOutput(md5($rand), 'rand');
 		$this->setOutput('windid.php' , 'apifile');
 	}
-	
+
 	public function doaddAction() {
 		$apifile = $this->getInput('apifile', 'post');
 		if (!$apifile) $apifile = 'windid.php';
@@ -60,13 +63,13 @@ class ClientController extends AdminBaseController {
 		if ($result instanceof WindidError) $this->showError('WINDID:fail');
 		$this->showMessage('WINDID:success');
 	}
-	
+
 	public function editAction() {
 		$app = $this->_getAppDs()->getApp(intval($this->getInput('id', 'get')));
 		if (!$app) $this->showMessage('WINDID:fail');
 		$this->setOutput($app, 'app');
 	}
-	
+
 	public function doeditAction() {
 		Wind::import('WINDID:service.app.dm.WindidAppDm');
 		$dm = new WindidAppDm(intval($this->getInput('id', 'post')));
@@ -82,7 +85,7 @@ class ClientController extends AdminBaseController {
 		if ($result instanceof WindidError) $this->showError('ADMIN:fail');
 		$this->showMessage('WINDID:success');
 	}
-	
+
 	public function deleteAction() {
 		$id = intval($this->getInput('id', 'post'));
 		if (!$id) {
@@ -92,7 +95,7 @@ class ClientController extends AdminBaseController {
 		if ($result instanceof WindidError) $this->showError('WINDID:fail');
 		$this->showMessage('WINDID:success');
 	}
-	
+
 	private function _getAppDs() {
 		return WindidApi::api('app');
 	}
