@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>Modern Blue</name>
+		<alias>modern_blue</alias>
+		<version>1.0.0</version>
+		<pw-version>9.0</pw-version>
+		<charset>UTF-8</charset>
+		<type>style</type>
+		<style-type>site</style-type>
+		<description>A modern, cute, and responsive theme with a #49a2f1 primary color.</description>
+		<logo>images/preview.jpg</logo>
+		<website></website>
+		<author-name>AI Assistant</author-name>
+		<author-email></author-email>
+		<author-icon></author-icon>
+	</application>
+
+</manifest>

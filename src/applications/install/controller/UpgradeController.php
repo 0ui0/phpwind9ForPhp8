@@ -13,7 +13,7 @@ define('NEXT_VERSION', '9.0');
  */
 class UpgradeController extends WindController {
 	private $_tmpconfig = array();
-	
+
 	/* (non-PHPdoc)
 	 * @see WindSimpleController::beforeAction()
 	 */
@@ -37,7 +37,7 @@ class UpgradeController extends WindController {
 		$url['attach'] = WindUrlHelper::checkUrl(PUBLIC_ATTACH, PUBLIC_URL);
 		Wekit::setGlobal($url, 'url');
 		$this->setOutput('phpwind 8.7 to 9.0', 'wind_version');
-		
+
 		//ajax递交编码转换
 		$token = $this->getInput('token', 'get');
 		$lockFile = Wind::getRealPath('DATA:setup.setup.lock', true);
@@ -58,7 +58,7 @@ class UpgradeController extends WindController {
 		Wekit::createapp('phpwind');
 		//更新HOOK配置数据
 		Wekit::load('hook.srv.PwHookRefresh')->refresh();
-		
+
 		//初始化站点config
 		$site_hash = WindUtility::generateRandStr(8);
 		$cookie_pre = WindUtility::generateRandStr(3);
@@ -66,10 +66,10 @@ class UpgradeController extends WindController {
 		Wekit::load('config.PwConfig')->setConfig('site', 'cookie.pre', $cookie_pre);
 		Wekit::load('config.PwConfig')->setConfig('site', 'info.url', PUBLIC_URL);
 		Wekit::load('nav.srv.PwNavService')->updateConfig();
-		
+
 		//风格默认数据
 		Wekit::load('APPCENTER:service.srv.PwStyleInit')->init();
-		
+
 		//计划任务默认数据
 		Wekit::load('cron.srv.PwCronService')->updateSysCron();
 		//版块的统计数据更新
@@ -77,7 +77,7 @@ class UpgradeController extends WindController {
 		$forumMisc = Wekit::load('forum.srv.PwForumMiscService');
 		$forumMisc->correctData();
 		$forumMisc->countAllForumStatistics();
-		
+
 		//更新数据缓存
 		/* @var $usergroup PwUserGroupsService */
 		$usergroup = Wekit::load('SRV:usergroup.srv.PwUserGroupsService');
@@ -92,7 +92,7 @@ class UpgradeController extends WindController {
 		Wekit::load('SRV:design.srv.PwDesignDefaultService')->likeModule();
 		Wekit::load('SRV:design.srv.PwDesignDefaultService')->tagModule();
 		Wekit::load('SRV:design.srv.PwDesignDefaultService')->reviseDefaultData();
-		
+
 		//全局缓存更新
 		Wekit::load('SRV:cache.srv.PwCacheUpdateService')->updateConfig();
 		Wekit::load('SRV:cache.srv.PwCacheUpdateService')->updateMedal();
@@ -114,7 +114,7 @@ class UpgradeController extends WindController {
 
 		list($ftp, $attachDir) = $this->_getFtp();
 		$defauleDir = rtrim(Wind::getRealDir('PUBLIC:res.images.face', true), '/');
-		
+
 		list($start_uid, $end) = $this->_getStartAndLimit(intval($this->getInput('uid', 'get')), $end_uid, $ftp ? true : false);
 		while ($start_uid < $end) {
 			$res = $this->_getOldAvatarPath($attachDir, $start_uid);
@@ -130,7 +130,7 @@ class UpgradeController extends WindController {
 			$to_big = $_toPath . $start_uid . '.jpg';
 			$to_middle = $_toPath . $start_uid . '_middle.jpg';
 			$to_small = $_toPath . $start_uid . '_small.jpg';
-			
+
 			if ($ftp) {
 				$ftp->mkdirs($_toPath);
 				$ftp->upload($big, $to_big);
@@ -152,7 +152,7 @@ class UpgradeController extends WindController {
 			$this->showMessage('升级成功！');
 		}
 	}
-	
+
 	/**
 	 * 获得ftp对象
 	 *
@@ -180,7 +180,7 @@ class UpgradeController extends WindController {
 		$attachDir = rtrim($attachDir, '/');
 		return array($ftp, $attachDir);
 	}
-	
+
 	/**
 	 * 获得开始结束的ID
 	 *
@@ -198,7 +198,7 @@ class UpgradeController extends WindController {
 			$_lt == 0 && $_lt = 1;
 			$limit = 1000 * $_lt; */
 		}
-		
+
 		if ($start_uid < 1) $start_uid = 1;
 		if ($start_uid >= $end_uid) {
 			$this->showMessage('头像升级成功');
@@ -206,7 +206,7 @@ class UpgradeController extends WindController {
 		$end = ($start_uid + $limit) > $end_uid ? $end_uid : ($start_uid + $limit);
 		return array($start_uid, $end);
 	}
-	
+
 	/**
 	 * 检查文件
 	 *
@@ -267,7 +267,7 @@ class UpgradeController extends WindController {
 		if (!$link) {
 			$this->showError("Access denied for user '{$db_config['src_username']}'@'{$db_config['src_host']}' (using password: YES) - " . mysqli_connect_error());
 		}
-		
+
 		$sql = sprintf("SELECT MAX(uid) FROM %smembers", trim($pre));
 		$rt = mysqli_query($link, $sql);
 		if (false === $rt) {
@@ -279,10 +279,10 @@ class UpgradeController extends WindController {
 		}
 		return $result[0];
 	}
-	
+
 	/**
 	 * windid更新
-	 * 
+	 *
 	 * @return boolean
 	 */
 	private function _writeWindid() {
@@ -291,7 +291,7 @@ class UpgradeController extends WindController {
 		$charset = Wekit::V('charset');
 		$charset = str_replace('-', '', strtolower($charset));
 		if (!in_array($charset, array('gbk', 'utf8', 'big5'))) $charset = 'utf8';
-		
+
 		$config = new PwConfigSet('windid');
 		$config->set('windid', 'local')
 		->set('serverUrl', $baseUrl . '/windid')
@@ -317,7 +317,7 @@ class UpgradeController extends WindController {
 	}
 	/**
 	 * 自定义页面升级  start
-	 * 
+	 *
 	 * @return boolean
 	 */
 	protected function _designUpgrade() {
@@ -329,8 +329,8 @@ class UpgradeController extends WindController {
 		foreach ($list AS $k=>$v) {
 			if(empty($v['template']))  $dirList[$k] = $v['id'];
 		}
-		
-		
+
+
 		$dir = Wind::getRealDir('THEMES:portal.local.');
 		$_dir = array();
 		if (!is_dir($dir)) return array();
@@ -353,7 +353,7 @@ class UpgradeController extends WindController {
 			}
 		}
 		$srv = Wekit::load('design.srv.PwDesignService');
-	
+
 		foreach ($dirList AS $k=>$v) {
 			$tplPath = 'special_'.$v;
 			$result = $srv->defaultTemplate($k, $tplPath);
@@ -368,7 +368,7 @@ class UpgradeController extends WindController {
 		@closedir($handle);
 		return true;
 	}
-	
+
 	/**
 	 * 复制目录
 	 *
@@ -393,11 +393,11 @@ class UpgradeController extends WindController {
 	    @closedir($dir);
 	    return true;
 	}
-	
+
 	private function _getPortalDs() {
 		return Wekit::load('design.PwDesignPortal');
 	}
-	
+
 	private function _tpl() {
 		return  <<<TPL
 <!doctype html>
@@ -407,7 +407,7 @@ class UpgradeController extends WindController {
 </head>
 <body>
 <design role="start"/>
-	<!--# 
+	<!--#
 	\$wrapall = !\$portal['header'] ? 'custom_wrap' : 'wrap';
 	#-->
 	<div class="{\$wrapall}">
@@ -434,13 +434,13 @@ Wind.use('jquery', 'global');
 </body>
 </html>
 TPL;
-		
+
 	}
 	/**
 	 * 自定义页面升级 end
 	 */
 
-	
+
 	/* (non-PHPdoc)
 	 * @see WindSimpleController::setDefaultTemplateName()
 	 */

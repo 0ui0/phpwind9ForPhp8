@@ -12,22 +12,22 @@ $Id: core.css 7957 2012-04-13 08:09:22Z yanchixia $
 初始化【请勿修改】
 ===================
 */
-html,body, 
+html,body,
 div, dl, dt, dd, ul, p, th, td,
-h1, h2, h3, h4, h5, h6, 
-pre, code, form, 
+h1, h2, h3, h4, h5, h6,
+pre, code, form,
 fieldset, legend{
 	margin: 0;
 	padding: 0;
 }
-cite, 
-em, 
-strong, 
+cite,
+em,
+strong,
 th {
 	font-style: normal;
 }
-td, 
-th, 
+td,
+th,
 div {
 	word-break:break-all;
 	word-wrap:break-word;
@@ -491,7 +491,7 @@ a.btn_old:visited{
 数据表写入
 ===================
 */
-.install{	
+.install{
 	box-shadow:5px 5px 5px #f7f7f7 inset;
 	border:1px solid #bdbcbc;
 	width:670px;
@@ -549,7 +549,7 @@ a.btn_old:visited{
 使用方法
 	可独立样式使用，亦可与tips组装，例：
 	<div class="tips"><span class="tips_error">错误内容</span></div>
-	
+
 	可在外出包裹 tips_block 对错误提示进行块级效果展示
 ===================
 */
@@ -570,7 +570,7 @@ a.btn_old:visited{
 	background:url(../images/install/tips_system.png) -20px 2px no-repeat;
 	display:inline-block;
 	line-height:18px;
-}	
+}
 .tips_success{
 	color:#008800;
 	background-position:0 -19px;

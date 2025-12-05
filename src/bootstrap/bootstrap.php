@@ -33,26 +33,26 @@ abstract class bootstrap {
 		}
 		return $cache;
 	}
-	
+
 	/**
 	 * 获取配置对象
 	 */
 	public function getConfigBo() {
 		return new PwConfigBo($this->_re);
 	}
-	
+
 	/**
 	 * 获取配置服务提供方
 	 */
 	abstract public function getConfigService();
-	
+
 	/**
 	 * 获取全局配置
 	 *
 	 * @return PwConfigBo
 	 */
 	abstract public function getConfig();
-	
+
 	/**
 	 * 获取当前时间戳
 	 *
@@ -61,15 +61,15 @@ abstract class bootstrap {
 	public function getTime() {
 		return time();
 	}
-	
-	/** 
+
+	/**
 	 * 获得登录用户信息
 	 *
 	 * @return obj
 	 */
 	abstract public function getLoginUser();
-	
-	/** 
+
+	/**
 	 * 获取当前编码
 	 *
 	 * @return string
@@ -77,8 +77,8 @@ abstract class bootstrap {
 	public function getCharset() {
 		return Wind::getComponent('response')->getCharset();
 	}
-	
-	/** 
+
+	/**
 	 * 获取全站url信息
 	 *
 	 * @return obj
@@ -86,10 +86,10 @@ abstract class bootstrap {
 	public function getUrl() {
 		$_consts = Wekit::S('publish');
 		$realPublicUrl = defined('PUBLIC_URL') ? PUBLIC_URL : '';
-		
+
 		// Debug logging
 		// file_put_contents('/Users/lambda/.gemini/tmp/90432c94314757c2a715f5c4004c86e7498305c120092289658fcf9a2d21/url_debug.log', "PUBLIC_URL: " . $realPublicUrl . "\n", FILE_APPEND);
-		
+
 		foreach ($_consts as $const => $value) {
 			if ($const === 'PUBLIC_URL') {
 				if (!$value && !$realPublicUrl) {
@@ -123,7 +123,7 @@ abstract class bootstrap {
 		$url->extres = WindUrlHelper::checkUrl(PUBLIC_THEMES . '/extres', $url->base);
 		return $url;
 	}
-	
+
 	/**
 	 * 初始化应用信息
 	 */

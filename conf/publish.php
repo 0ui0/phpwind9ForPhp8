@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('WEKIT_VERSION') or exit(403);
 /**
  * 外部可访问资源部署目录配置

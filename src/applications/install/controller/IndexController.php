@@ -34,9 +34,9 @@ class IndexController extends WindController {
 	public function beforeAction($handlerAdapter) {
 		$logFile = '/Users/lambda/Desktop/phpwind/data/install_debug.log';
 		file_put_contents($logFile, "Entering beforeAction: " . $handlerAdapter->getAction() . "\n", FILE_APPEND);
-		
+
 		if ('finish' != $handlerAdapter->getAction()) Wekit::createapp('install');
-		
+
 		file_put_contents($logFile, "Wekit::createapp('install') executed.\n", FILE_APPEND);
 
 		//ajax递交编码转换
@@ -59,17 +59,17 @@ class IndexController extends WindController {
 			}
 			define($const, $value);
 		}
-		
+
 		$url = array();
 		$url['base'] = PUBLIC_URL;
 		$url['res'] = WindUrlHelper::checkUrl(PUBLIC_RES, PUBLIC_URL);
-		$url['css'] = WindUrlHelper::checkUrl(PUBLIC_RES . '/css/', PUBLIC_URL);
-		$url['images'] = WindUrlHelper::checkUrl(PUBLIC_RES . '/images/', PUBLIC_URL);
-		$url['js'] = WindUrlHelper::checkUrl(PUBLIC_RES . '/js/dev/', PUBLIC_URL);
+		$url['css'] = WindUrlHelper::checkUrl(PUBLIC_RES . '/css', PUBLIC_URL);
+		$url['images'] = WindUrlHelper::checkUrl(PUBLIC_RES . '/images', PUBLIC_URL);
+		$url['js'] = WindUrlHelper::checkUrl(PUBLIC_RES . '/js/dev', PUBLIC_URL);
 		$url['attach'] = WindUrlHelper::checkUrl(PUBLIC_ATTACH, PUBLIC_URL);
 		Wekit::setGlobal($url, 'url');
 		$this->setOutput(NEXT_VERSION, 'wind_version');
-		
+
 		WindFile::isFile($this->_getInstallLockFile()) && $this->showError('INSTALL:have_install_lock');
 	}
 
@@ -90,7 +90,7 @@ class IndexController extends WindController {
 		$currentEnvironment = $this->_getCurrentEnvironment();
 		$recommendEnvironment = $this->_getRecommendEnvironment();
 		$writeAble = $this->_checkFileRight();
-		
+
 		$check_pass = true;
 		foreach ($currentEnvironment as $key => $value) {
 			if (false !== strpos($key, '_ischeck') && false === $value) $check_pass = false;
@@ -98,7 +98,7 @@ class IndexController extends WindController {
 		foreach ($writeAble as $value) {
 			if (false === $value) $check_pass = false;
 		}
-		
+
 		$this->setOutput($writeAble, 'writeAble');
 		$this->setOutput($lowestEnvironment, 'lowestEnvironment');
 		$this->setOutput($currentEnvironment, 'currentEnvironment');
@@ -111,7 +111,7 @@ class IndexController extends WindController {
 	public function infoAction() {
 		WindFile::del($this->_getTableLogFile());
 		WindFile::del($this->_getTableSqlFile());
-		
+
 		$database_writable = $this->_checkWriteAble($this->_getDatabaseFile());
 		$founder_writable = $this->_checkWriteAble($this->_getFounderFile());
 		$this->setOutput($database_writable, 'database_writable');
@@ -153,7 +153,7 @@ class IndexController extends WindController {
 		if (false === WindValidator::isEmail($input['manager_email'])) {
 			$this->showError('INSTALL:founder.init.email.error');
 		}
-				
+
 		if (strpos($input['dbhost'], ':') !== false) {
 			list($input['dbhost'], $input['dbport']) = explode(':', $input['dbhost']);
 		} else {
@@ -169,7 +169,7 @@ class IndexController extends WindController {
 		$charset = Wind::getApp()->getResponse()->getCharset();
 		$charset = str_replace('-', '', strtolower($charset));
 		if (!in_array($charset, array('gbk', 'utf8', 'big5'))) $charset = 'utf8';
-		
+
 		// 检测是否安装过了
 		Wind::import("WIND:db.WindConnection");
 		$dsn = 'mysql:host=' . $input['dbhost'] . ';port=' . $input['dbport'];
@@ -207,7 +207,7 @@ class IndexController extends WindController {
 		if (!$this->_checkWriteAble($this->_getFounderFile())) {
 			$this->showError('INSTALL:error_777_founder');
 		}
-		
+
 		$database = array(
 			'dsn' => 'mysql:host=' . $input['dbhost'] . ';dbname=' . $input['dbname'] . ';port=' . $input['dbport'],
 			'user' => $input['dbuser'],
@@ -220,7 +220,7 @@ class IndexController extends WindController {
 				'manager_pwd' => $input['manager_pwd'],
 				'manager_email' => $input['manager_email']));
 		WindFile::savePhpData($this->_getTempFile(), $database);
-		
+
 		$arrSQL = array();
 		foreach ($this->wind_data as $file) {
 			$file = Wind::getRealPath("APPS:install.lang.$file", true);
@@ -231,7 +231,7 @@ class IndexController extends WindController {
 		}
 		WindFile::savePhpData($this->_getTableSqlFile(), $arrSQL['SQL']);
 		WindFile::write($this->_getTableLogFile(), implode('<wind>', $arrSQL['LOG']['CREATE']));
-		
+
 		$this->showMessage('success', false, 'index/table');
 	}
 
@@ -240,16 +240,16 @@ class IndexController extends WindController {
 	 */
 	public function tableAction() {
 		@set_time_limit(300);
-        
+
         $db = $this->_checkDatabase();
-		
+
         try {
 			$pdo = new WindConnection($db['dsn'], $db['user'], $db['pwd'], $db['charset']);
 			$pdo->setConfig($db);
 		} catch (PDOException $e) {
 			$this->showError($e->getMessage(), false);
 		}
-		
+
         $tableSql = include $this->_getTableSqlFile();
 
 		try {
@@ -279,11 +279,11 @@ class IndexController extends WindController {
 
 		try {
 			@set_time_limit(300);
-			
+
 			file_put_contents($logFile, "Checking database...\n", FILE_APPEND);
 			$db = $this->_checkDatabase();
 			file_put_contents($logFile, "Database config loaded.\n", FILE_APPEND);
-			
+
 			try {
 				file_put_contents($logFile, "Connecting to DB...\n", FILE_APPEND);
 				$pdo = new WindConnection($db['dsn'], $db['user'], $db['pwd'], $db['charset']);
@@ -293,7 +293,7 @@ class IndexController extends WindController {
 				file_put_contents($logFile, "DB Connection Error: " . $e->getMessage() . "\n", FILE_APPEND);
 				$this->showError($e->getMessage(), false);
 			}
-			
+
 			file_put_contents($logFile, "Loading SQL file...\n", FILE_APPEND);
 			$tableSql = include $this->_getTableSqlFile();
 			try {
@@ -320,12 +320,12 @@ class IndexController extends WindController {
 				'engine' => $db['engine']);
 			WindFile::savePhpData($this->_getDatabaseFile(), $database);
 			file_put_contents($logFile, "Database config saved.\n", FILE_APPEND);
-			
+
 			//写入windid配置信息
 			file_put_contents($logFile, "Writing WindID config...\n", FILE_APPEND);
 			$this->_writeWindid();
 			file_put_contents($logFile, "WindID config written.\n", FILE_APPEND);
-			
+
 			// Redirect to finish action immediately, without trying to render a view for dataAction
 			file_put_contents($logFile, "Redirecting to finish...\n", FILE_APPEND);
 			$this->forwardRedirect(WindUrlHelper::createUrl('index/finish'));
@@ -366,13 +366,13 @@ class IndexController extends WindController {
 		Wekit::load('config.PwConfig')->setConfig('site', 'info.mail', $db['founder']['manager_email']);
 		Wekit::load('config.PwConfig')->setConfig('site', 'info.url', PUBLIC_URL);
 		Wekit::load('nav.srv.PwNavService')->updateConfig();
-		
+
 		Wind::import('WINDID:service.config.srv.WindidConfigSet');
 		$windidConfig = new WindidConfigSet('site');
 		$windidConfig->set('hash', $site_hash)
 		->set('cookie.pre', $cookie_pre)
 		->flush();
-		
+
 		//风格默认数据
 		Wekit::load('APPCENTER:service.srv.PwStyleInit')->init();
 
@@ -388,10 +388,10 @@ class IndexController extends WindController {
 		/* @var $emotion PwEmotionService */
 		$emotion = Wekit::load('SRV:emotion.srv.PwEmotionService');
 		$emotion->updateCache();
-			
+
 		//创始人配置
 		$uid = $this->_writeFounder($db['founder']['manager'], $db['founder']['manager_pwd'], $db['founder']['manager_email']);
-		
+
 		//门户演示数据
 		Wekit::load('SRV:design.srv.PwDesignDefaultService')->likeModule();
 		Wekit::load('SRV:design.srv.PwDesignDefaultService')->tagModule();
@@ -407,17 +407,17 @@ class IndexController extends WindController {
 			$postDm->setTitle($thread['title'])->setContent($thread['content']);
 			$result = $pwPost->execute($postDm);
 		}
-		
+
 		//全局缓存更新
 		Wekit::load('SRV:cache.srv.PwCacheUpdateService')->updateConfig();
 		Wekit::load('SRV:cache.srv.PwCacheUpdateService')->updateMedal();
-		
+
 		//清理安装过程的文件
 		WindFile::write($this->_getInstallLockFile(), 'LOCKED');
 		WindFile::del($this->_getTempFile());
 		WindFile::del($this->_getTableLogFile());
 		WindFile::del($this->_getTableSqlFile());
-		
+
 		// Explicitly set template for finish action
 		$this->setTemplate('index_finish');
 	}
@@ -565,7 +565,7 @@ class IndexController extends WindController {
 	/**
 	 * 获取推荐的环境配置信息
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	private function _getRecommendEnvironment() {
 		return array(
@@ -601,7 +601,7 @@ class IndexController extends WindController {
 	 */
 	private function _checkFileRight() {
 		$rootdir = Wind::getRootPath('ROOT');
-		
+
 		$files_writeble[] = CONF_PATH;
 		$files_writeble[] = DATA_PATH; //数据缓存目录
 		$files_writeble[] = DATA_PATH . 'cache/';
@@ -619,11 +619,11 @@ class IndexController extends WindController {
 		$files_writeble[] = THEMES_PATH . 'site/';
 		$files_writeble[] = THEMES_PATH . 'space/';
 		$files_writeble[] = PUBLIC_PATH . 'windid/attachment/';
-		
+
 		$files_writeble[] = $this->_getDatabaseFile();
 		$files_writeble[] = $this->_getFounderFile();
 		//$files_writeble[] = $this->_getWindidFile();
-		
+
 		$files_writeble = array_unique($files_writeble);
 		sort($files_writeble);
 		$writable = array();
@@ -683,7 +683,7 @@ class IndexController extends WindController {
 		Wind::import('SRV:user.dm.PwUserInfoDm');
 		$data = array($manager => md5($manager_pwd));
 		WindFile::savePhpData($this->_getFounderFile(), $data);
-		
+
 		//TODO 创始人添加：用户的配置信息先更新。添加完之后再更新回 开始
 		$config = new PwConfigSet('register');
 		$config->set('security.username.max', 15)
@@ -692,7 +692,7 @@ class IndexController extends WindController {
 		->set('security.password.max', 25)
 		->set('security.password.min', 1)
 		->flush();
-		
+
 		Wind::import('WINDID:service.config.srv.WindidConfigSet');
 		$windidConfig = new WindidConfigSet('reg');
 		$windidConfig->set('security.ban.username', '')
@@ -707,7 +707,7 @@ class IndexController extends WindController {
 		$userDm = new PwUserInfoDm();
 		$userDm->setUsername($manager)->setPassword($manager_pwd)->setEmail($manager_email)->setGroupid(3)->setRegdate(
 			Pw::getTime())->setLastvisit(Pw::getTime())->setRegip(Wind::getApp()->getRequest()->getClientIp())->setGroups(array('3'=>'0'));
-		
+
 		//特殊操作  gao.wanggao
 		if (true !== ($result = $userDm->beforeAdd())) {
 			$this->showError($result->getError());
@@ -715,18 +715,18 @@ class IndexController extends WindController {
 		if (($uid = Wekit::load('WSRV:user.WindidUser')->addUser($userDm->dm)) < 1) {
 			$this->showError('WINDID:code.' . $uid);
 		}
-		
+
 		$userDm->setUid($uid);
-		
+
 		Wind::import('SRV:user.PwUser');
 		$daoMap = array();
 		$daoMap[PwUser::FETCH_MAIN] = 'user.dao.PwUserDao';
 		$daoMap[PwUser::FETCH_DATA] = 'user.dao.PwUserDataDao';
 		$daoMap[PwUser::FETCH_INFO] = 'user.dao.PwUserInfoDao';
 		Wekit::loadDaoFromMap(PwUser::FETCH_ALL, $daoMap, 'PwUser')->addUser($userDm->getSetData());
-		//特殊操作  
-			
-			
+		//特殊操作
+
+
 		//$uid = Wekit::load('user.PwUser')->addUser($userDm);
 		//TODO 创始人添加完成：恢复默认数据：开始
 		$config = new PwConfigSet('register');
@@ -736,7 +736,7 @@ class IndexController extends WindController {
 		->set('security.password.max', 15)
 		->set('security.password.min', 6)
 		->flush();
-		
+
 
 		$windidConfig = new WindidConfigSet('reg');
 		$windidConfig->set('security.ban.username', '创始人,管理员,版主,斑竹,admin')
@@ -746,19 +746,19 @@ class IndexController extends WindController {
 			->set('security.username.min', 3)
 			->flush();
 		//TODO 结束
-		
+
 		if ($uid instanceof PwError) {
 			$this->showError($uid->getError());
 		}
 		Wekit::load('user.PwUserBelong')->update($uid, array(3 => 0));
-		
+
 		//特殊操作  gao.wanggao
         $this->_defaultAvatar($uid);
         $this->_defaultAvatar(0);
-        //特殊操作  
+        //特殊操作
 		//Wekit::load('user.srv.PwUserService')->restoreDefualtAvatar($uid);//用户的默认头像需要设置
 		//Wekit::load('user.srv.PwUserService')->restoreDefualtAvatar(0);//游客的默认头像需要设置
-		
+
 		//站点统计信息
 		Wind::import('SRV:site.dm.PwBbsinfoDm');
 		$dm = new PwBbsinfoDm();
@@ -766,7 +766,7 @@ class IndexController extends WindController {
 		Wekit::load('site.PwBbsinfo')->updateInfo($dm);
 		return $uid;
 	}
-	
+
 	private function _defaultAvatar($uid, $type = 'face') {
 		Wind::import('LIB:upload.PwUpload');
 		$_avatar = array('.jpg' => '_big.jpg', '_middle.jpg' => '_middle.jpg', '_small.jpg' => '_small.jpg');
@@ -781,7 +781,7 @@ class IndexController extends WindController {
 		}
 		return true;
 	}
-	
+
 	private function _writeWindid() {
 		Wind::import('WINDID:WindidApi');
 		$baseUrl = Wekit::url()->base;
@@ -789,7 +789,7 @@ class IndexController extends WindController {
 		$charset = Wekit::V('charset');
 		$charset = str_replace('-', '', strtolower($charset));
 		if (!in_array($charset, array('gbk', 'utf8', 'big5'))) $charset = 'utf8';
-		
+
 		$config = new PwConfigSet('windid');
 		$config->set('windid', 'local')
 		->set('serverUrl', $baseUrl . '/windid')
@@ -797,7 +797,7 @@ class IndexController extends WindController {
 		->set('clientKey', $key)
 		->set('connect', 'db')->flush();
 		Wekit::C()->reload('windid');
-		
+
 		Wind::import('WINDID:service.app.dm.WindidAppDm');
 		$dm = new WindidAppDm();
 		$dm->setApiFile('windid.php')
@@ -833,11 +833,11 @@ class IndexController extends WindController {
 		if (!$this->_checkWriteAble($this->_getFounderFile())) {
 			$this->showError('INSTALL:error_777_founder');
 		}
-		
+
 		/*if (!$this->_checkWriteAble($this->_getWindidFile())) {
 			$this->showError('INSTALL:error_777_windid');
 		}*/
-		
+
 		$database = include $this->_getTempFile();
 		if (!$database['founder']) {
 			$this->showError('INSTALL:database_config_error');
@@ -849,7 +849,7 @@ class IndexController extends WindController {
 		$data = include Wind::getRealPath("APPS:install.lang.demo_threads");
 		return $data;
 	}
-	
+
 	/*private function _getWindidFile() {
 		return Wind::getRealPath('ROOT:conf.windidconfig.php', true);
 	}*/
@@ -873,7 +873,7 @@ class IndexController extends WindController {
 	private function _getTempFile() {
 		return Wind::getRealPath('DATA:tmp.database.php', true);
 	}
-	
+
 	private function _getDatabaseFile() {
 		return Wind::getRealPath('ROOT:conf.database.php', true);
 	}
