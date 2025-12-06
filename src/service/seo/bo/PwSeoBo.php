@@ -6,13 +6,13 @@
  * 论坛首页：站点名称{sitename}
  * 帖子列表：站点名称{sitename}、版块名称{forumname}、版块简介{forumdescription}
  * 帖子阅读页：站点名称{sitename}、版块名称{forumname}、帖子标题{title}、帖子摘要{description}、帖子主题分类{classification}、标签{tags}
- * 
+ *
  * 显示逻辑：
  * 以帖子列表页为例：
  * 如果版块设置了seo，则显示版块seo;
  * 如果帖子列表页设置了，则显示帖子列表页的;
  * 最后如果都没有，显示全局seo
- * 
+ *
  * 默认数据：
  * 考虑当后台没有设置任何seo信息时的默认显示数据。
  * 先确定论坛的三大页面，其他的页面由各个应用考虑。(此处具体见service.seo.conf)
@@ -28,7 +28,7 @@
  * title：帖子标题_版块名称_论坛名称
  * keyword：空
  * description：帖子摘要，截取内容前100字节
- * 
+ *
  * @author Shi Long <long.shi@alibaba-inc.com>
  * @copyright ©2003-2103 phpwind.com
  * @license http://www.windframework.com
@@ -42,19 +42,19 @@ class PwSeoBo {
 	 * @var array
 	 */
 	protected  $defaultSeo = array(
-		'title' => '{sitename}', 
-		'description' => '{sitename}', 
+		'title' => '{sitename}',
+		'description' => '{sitename}',
 		'keywords' => '{sitename}');
 	protected  $seo = array();
 	protected  $codeData = array();
 	protected  $default = array();
 	private static $_instance = null;
-	
+
 	public function __construct() {
 		$sitename = Wekit::C('site', 'info.name');
 		$this->set('{sitename}', $sitename);
 	}
-	
+
 	/**
 	 * @return PwSeoBo
 	 */
@@ -71,9 +71,9 @@ class PwSeoBo {
 	 * 如果版块设置了seo，则显示版块seo;
 	 * 如果帖子列表页设置了，则显示帖子列表页的;
 	 *
-	 * @param string $mod        	
-	 * @param string $page        	
-	 * @param string $param        	
+	 * @param string $mod
+	 * @param string $page
+	 * @param string $param
 	 */
 	public function init($mod, $page, $param = '0') {
 		$this->default || $this->default = Wekit::load('APPS:seo.service.PwSeoExtends')->getDefaultSeoByPage(
@@ -84,7 +84,7 @@ class PwSeoBo {
 		 */
 		if ($param != '0') {
 			list($seo, $seo_0) = array(
-				$this->_seoService()->getByModAndPageAndParamWithCache($mod, $page, $param), 
+				$this->_seoService()->getByModAndPageAndParamWithCache($mod, $page, $param),
 				$this->_seoService()->getByModAndPageAndParamWithCache($mod, $page, 0));
 			$this->seo = self::_choose($seo, $seo_0, $this->default);
 		} else {
@@ -96,8 +96,8 @@ class PwSeoBo {
 	/**
 	 * 设置占位符的值
 	 *
-	 * @param string $code        	
-	 * @param string $value        	
+	 * @param string $code
+	 * @param string $value
 	 */
 	public function set($code, $value = '') {
 		if (is_array($code))
@@ -121,23 +121,23 @@ class PwSeoBo {
 	/**
 	 * 此接口仅供无后台管理模式的seo值设置
 	 *
-	 * @param string $title        	
-	 * @param string $keywords        	
-	 * @param string $description        	
+	 * @param string $title
+	 * @param string $keywords
+	 * @param string $description
 	 */
 	public function setCustomSeo($title, $keywords, $description) {
 		if ($title || $keywords || $description) {
 			$this->seo = array(
-				'title' => $title, 
-				'keywords' => $keywords, 
+				'title' => $title,
+				'keywords' => $keywords,
 				'description' => $description);
 		}
 	}
 
 	public function setDefaultSeo($title, $keywords, $description) {
 		$this->default = array(
-			'title' => $title, 
-			'keywords' => $keywords, 
+			'title' => $title,
+			'keywords' => $keywords,
 			'description' => $description);
 	}
 

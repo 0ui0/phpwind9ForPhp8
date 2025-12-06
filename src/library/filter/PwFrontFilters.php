@@ -2,7 +2,7 @@
 Wind::import('WIND:base.AbstractWindBootstrap');
 /**
  * P9中的一些全局挂载
- * 
+ *
  * @author xiaoxia.xu <xiaoxia.xuxx@aliyun-inc.com>
  * @copyright ©2003-2103 phpwind.com
  * @license http://www.windframework.com
@@ -15,19 +15,19 @@ class PwFrontFilters extends AbstractWindBootstrap {
 	 */
 	public function onCreate() {
 		Wekit::createapp(Wind::getAppName());
-		
+
 		$_debug = Wekit::C('site', 'debug');
 		// if ($_debug == !Wind::$isDebug) Wind::$isDebug = $_debug;
 		error_reporting($_debug ? E_ALL ^ E_NOTICE ^ E_DEPRECATED : E_ERROR | E_PARSE);
 		set_error_handler(array($this->front, '_errorHandle'), error_reporting());
-		
+
 		$this->_convertCharsetForAjax();
-		
+
 		if ($components = Wekit::C('components')) {
 			Wind::getApp()->getFactory()->loadClassDefinitions($components);
 		}
 	}
-	
+
 	/*
 	 * (non-PHPdoc) @see AbstractWindBootstrap::onStart()
 	 */
@@ -38,7 +38,7 @@ class PwFrontFilters extends AbstractWindBootstrap {
 		$theme['debug'] = '/dev';
 		Wekit::setGlobal($theme, 'theme');
 	}
-	
+
 	/*
 	 * (non-PHPdoc) @see AbstractWindBootstrap::onResponse()
 	 */
@@ -49,7 +49,7 @@ class PwFrontFilters extends AbstractWindBootstrap {
 		Wekit::setGlobal(NEXT_VERSION . ' ' . NEXT_RELEASE, 'version');
 		$seo = Wekit::V('seo');
 		Wekit::setGlobal($seo ? $seo->getData() : array('title' => Wekit::C('site', 'info.name')), 'seo');
-		
+
 		Wekit::setGlobal(Wind::getApp()->getRequest()->getIsAjaxRequest() ? '1' : '0', '_ajax_');
 	}
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<application>
+		<name>JS666简</name>
+		<alias>js666</alias>
+		<version>1.0</version>
+		<pw-version>9.0</pw-version>
+		<charset>UTF-8</charset>
+		<type>style</type>
+		<style-type>site</style-type>
+		<description>轻 简 扁  平 你值得拥有！</description>
+		<logo>images/preview.jpg</logo>
+		<website>http://www.115la.cn</website>
+		<author-name>115啦团队</author-name>
+		<author-email>86473052@qq.com</author-email>
+		<author-icon></author-icon>
+	</application>
+
+</manifest>
